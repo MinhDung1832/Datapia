@@ -1,0 +1,2 @@
+12/26/2023 10:19 PM: cmd.Parameters.Add(new SqlParameter(@userid, ADMIN));cmd.Parameters.Add(new SqlParameter(@wh_code, System.String[]));cmd.Parameters.Add(new SqlParameter(@area, ));
+12/26/2023 10:20 PM: cmd.Parameters.Add(new SqlParameter(@userid, ADMIN));cmd.Parameters.Add(new SqlParameter(@wh_code, System.String[]));cmd.Parameters.Add(new SqlParameter(@area, ));

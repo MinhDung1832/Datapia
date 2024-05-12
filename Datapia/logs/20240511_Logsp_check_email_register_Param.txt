@@ -1,0 +1,9 @@
+5/11/2024 10:03 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:04 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:06 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:06 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:09 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:16 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:19 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:26 PM: cmd.Parameters.Add(new SqlParameter(@email, ));
+5/11/2024 10:28 PM: cmd.Parameters.Add(new SqlParameter(@email, minhdungvipro@gmail.com));

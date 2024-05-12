@@ -1,0 +1,2 @@
+12/26/2023 9:26 PM: cmd.Parameters.Add(new SqlParameter(@userid, ADMIN));cmd.Parameters.Add(new SqlParameter(@wh, 10999));
+12/26/2023 9:27 PM: cmd.Parameters.Add(new SqlParameter(@userid, ADMIN));cmd.Parameters.Add(new SqlParameter(@wh, 10999));

@@ -1,0 +1,53 @@
+5/11/2024 10:29 PM: Start send
+5/11/2024 10:29 PM: System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Datapia.Controllers.AccountController.sendEmail(String emailAddress, String str_title, String str_content) in D:\Datapia\Datapia\Controllers\AccountController.cs:line 116
+5/11/2024 10:30 PM: Start send
+5/11/2024 10:34 PM: System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Datapia.Controllers.AccountController.sendEmail(String emailAddress, String str_title, String str_content)
+5/11/2024 10:34 PM: Start send
+5/11/2024 10:37 PM: Start send
+5/11/2024 10:39 PM: Start send
+5/11/2024 10:46 PM: Start send
+5/11/2024 11:15 PM: Start send
+5/11/2024 11:16 PM: System.Net.Sockets.SocketException (0x80004005): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 125.235.4.59:587
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar) in D:\src\MailKit\MailKit\Net\SocketUtils.cs:line 58
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at MailKit.Net.SocketUtils.Connect(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\Net\SocketUtils.cs:line 130
+   at MailKit.Net.SocketUtils.Connect(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\Net\SocketUtils.cs:line 186
+   at MailKit.MailService.ConnectNetwork(String host, Int32 port, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\MailService.cs:line 604
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\Net\Smtp\SmtpClient.cs:line 1399
+   at MailKit.MailService.Connect(String host, Int32 port, Boolean useSsl, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\MailService.cs:line 1066
+   at Datapia.Controllers.AccountController.SendEmail(String emailAddress, String str_title, String str_content)
+5/11/2024 11:16 PM: Start send
+5/11/2024 11:18 PM: MailKit.Security.AuthenticationException: 534: 5.7.9 Application-specific password required. For more information, go to
+5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor d9443c01a7336-1ef0bf31a93sm51484305ad.134 - gsmtp ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.9 Application-specific password required. For more information, go to
+5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor d9443c01a7336-1ef0bf31a93sm51484305ad.134 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\Net\Smtp\SmtpClient.cs:line 1192
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\MailService.cs:line 1383
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken) in D:\src\MailKit\MailKit\MailService.cs:line 1501
+   at Datapia.Controllers.AccountController.SendEmail(String emailAddress, String str_title, String str_content)
+5/11/2024 11:19 PM: Start send
+5/11/2024 11:23 PM: Start send
+5/11/2024 11:26 PM: MailKit.Net.Smtp.SmtpCommandException: 5.7.1 Sending from domain gmail.com is not allowed
+   at MailKit.Net.Smtp.SmtpClient.Send(FormatOptions options, MimeMessage message, MailboxAddress sender, IList`1 recipients, CancellationToken cancellationToken, ITransferProgress progress) in D:\src\MailKit\MailKit\Net\Smtp\SmtpClient.cs:line 2385
+   at MailKit.Net.Smtp.SmtpClient.Send(FormatOptions options, MimeMessage message, CancellationToken cancellationToken, ITransferProgress progress) in D:\src\MailKit\MailKit\Net\Smtp\SmtpClient.cs:line 2468
+   at MailKit.MailTransport.Send(MimeMessage message, CancellationToken cancellationToken, ITransferProgress progress) in D:\src\MailKit\MailKit\MailTransport.cs:line 120
+   at Datapia.Controllers.AccountController.SendEmail(String emailAddress, String str_title, String str_content)
+5/11/2024 11:26 PM: Start send
+5/11/2024 11:26 PM: MailKit.Net.Smtp.SmtpCommandException: 5.7.1 Demo domains can only be used to send emails to account owners. You can only send testing emails to your own email address.
+   at MailKit.Net.Smtp.SmtpClient.Send(FormatOptions options, MimeMessage message, MailboxAddress sender, IList`1 recipients, CancellationToken cancellationToken, ITransferProgress progress) in D:\src\MailKit\MailKit\Net\Smtp\SmtpClient.cs:line 2385
+   at MailKit.Net.Smtp.SmtpClient.Send(FormatOptions options, MimeMessage message, CancellationToken cancellationToken, ITransferProgress progress) in D:\src\MailKit\MailKit\Net\Smtp\SmtpClient.cs:line 2468
+   at MailKit.MailTransport.Send(MimeMessage message, CancellationToken cancellationToken, ITransferProgress progress) in D:\src\MailKit\MailKit\MailTransport.cs:line 120
+   at Datapia.Controllers.AccountController.SendEmail(String emailAddress, String str_title, String str_content)

@@ -1,0 +1,4 @@
+12/26/2023 10:19 PM: Error: System.ArgumentException: No mapping exists from object type System.String[] to a known managed provider native type.
+   at BaseConnectionSql.ExecuteList_V1[TValue](String strCon, String Stored, Object[] parameterValues) in D:\Warehouse\Warehouse\DataAccess\BaseConnectionSql.cs:line 490
+12/26/2023 10:20 PM: Error: System.ArgumentException: No mapping exists from object type System.String[] to a known managed provider native type.
+   at BaseConnectionSql.ExecuteList_V1[TValue](String strCon, String Stored, Object[] parameterValues) in D:\Warehouse\Warehouse\DataAccess\BaseConnectionSql.cs:line 490

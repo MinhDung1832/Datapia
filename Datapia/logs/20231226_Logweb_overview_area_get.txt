@@ -1,0 +1,8 @@
+12/26/2023 9:26 PM: Error: System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'dbo.vw_bin_inventory'.
+   at BaseConnectionSql.ExecuteList_V1[TValue](String strCon, String Stored, Object[] parameterValues) in D:\Warehouse\Warehouse\DataAccess\BaseConnectionSql.cs:line 490
+ClientConnectionId:116ea658-9a55-434c-b3cb-d725bbfbe380
+Error Number:208,State:1,Class:16
+12/26/2023 9:27 PM: Error: System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'dbo.vw_bin_inventory'.
+   at BaseConnectionSql.ExecuteList_V1[TValue](String strCon, String Stored, Object[] parameterValues) in D:\Warehouse\Warehouse\DataAccess\BaseConnectionSql.cs:line 490
+ClientConnectionId:a4c9f84a-dbb5-4f8f-990e-87af179c0da2
+Error Number:208,State:1,Class:16

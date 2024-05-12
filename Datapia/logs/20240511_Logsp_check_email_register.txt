@@ -1,0 +1,45 @@
+5/11/2024 10:03 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:04 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:06 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:06 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:09 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:16 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:19 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:26 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854
+5/11/2024 10:28 PM: Error: System.IndexOutOfRangeException: Name
+   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at BaseConnectionSql.Execute_List_String(String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 854

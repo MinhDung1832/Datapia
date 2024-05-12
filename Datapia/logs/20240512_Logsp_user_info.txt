@@ -1,0 +1,4 @@
+5/12/2024 10:40 AM: Error: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting date and/or time from character string.
+   at BaseConnectionSql.ExecuteList_V1[TValue](String strCon, String Stored, Object[] parameterValues) in D:\Datapia\Datapia\DataAccess\BaseConnectionSql.cs:line 490
+ClientConnectionId:9b3ba6ae-b95f-4f0e-a3b3-9b68b3cda886
+Error Number:241,State:1,Class:16

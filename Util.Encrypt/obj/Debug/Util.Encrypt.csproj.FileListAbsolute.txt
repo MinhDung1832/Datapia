@@ -1,0 +1,12 @@
+D:\bbsm\bibo-smart\Util.Encrypt\bin\Debug\Util.Encrypt.dll
+D:\bbsm\bibo-smart\Util.Encrypt\bin\Debug\Util.Encrypt.pdb
+D:\bbsm\bibo-smart\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.AssemblyReference.cache
+D:\bbsm\bibo-smart\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.CoreCompileInputs.cache
+D:\bbsm\bibo-smart\Util.Encrypt\obj\Debug\Util.Encrypt.dll
+D:\bbsm\bibo-smart\Util.Encrypt\obj\Debug\Util.Encrypt.pdb
+D:\Warehouse\Util.Encrypt\bin\Debug\Util.Encrypt.dll
+D:\Warehouse\Util.Encrypt\bin\Debug\Util.Encrypt.pdb
+D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.AssemblyReference.cache
+D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.CoreCompileInputs.cache
+D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.dll
+D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.pdb

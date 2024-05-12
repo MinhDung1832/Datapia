@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout_v1.cshtml";
+}
+
+@*<div class="position-absolute start-0 end-0 start-0 bottom-0 w-100 h-100">
+        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 800 800'>
+            <g fill-opacity='0.22'>
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.1);" cx='400' cy='400' r='600' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.2);" cx='400' cy='400' r='500' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.3);" cx='400' cy='400' r='300' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.4);" cx='400' cy='400' r='200' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.5);" cx='400' cy='400' r='100' />
+            </g>
+        </svg>
+    </div>*@
+<div class="account-pages pt-2  position-relative">
+    <div class="container">
+        <div class="py-4 text-center">
+            <a href="index.html">
+                <span><img src="~/assets/images/logo.svg" alt="logo" height="50"></span>
+            </a>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xxl-4 col-lg-5">
+                <!-- Logo -->
+
+
+                <div class="text-left w-100 m-auto">
+                    <h4 class="text-dark-50 text-left pb-0 fw-bold">Đăng ký</h4>
+                </div>
+
+                <form class="validate-form" method="post" asp-action="Register">
+                    @if (Session["err"] != null)
+                    {
+                        <p style="color:red;text-align: center;">@Session["err"].ToString()</p>
+                    }
+                    @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label for="user_code" class="form-label">Tên đăng nhập</label>
+                    <input class="form-control" asp-for="user_code" type="text" id="user_code" name="user_code" placeholder="Enter your name" required>
+                    <span asp-validation-for="user_code" style="color:red"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="user_name" class="form-label">Họ và tên</label>
+                    <input class="form-control" type="text" asp-for="user_name" id="user_name" name="user_name" placeholder="Enter your name" required>
+                    <span asp-validation-for="user_name" style="color:red"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="emailaddress" class="form-label">Email address</label>
+                    <input class="form-control" type="email" asp-for="emailaddress" id="emailaddress" name="emailaddress" required placeholder="Enter your email">
+                    <span asp-validation-for="emailaddress" style="color:red"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group input-group-merge">
+                        <input type="password" id="password" asp-for="password" name="password" class="form-control" placeholder="Enter your password">
+                        <div class="input-group-text" data-password="false">
+                            <span class="password-eye"></span>
+                        </div>
+                    </div>
+                    <span asp-validation-for="password" style="color:red"></span>
+                </div>
+
+                    @*<div class="mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                            <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                        </div>
+                    </div>*@
+
+                    <div class="mb-3 text-center">
+                        <button class="btn btn-primary" type="submit" id="submitlg"> Sign Up </button>
+                    </div>
+
+
+                </form>
+
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Already have account? <a href="/Account/Login" class="text-muted ms-1"><b>Log In</b></a></p>
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+@section scripts{
+    <script>
+        $(function () {
+            //js_checkip();
+        });
+        jQuery(document).on('keyup', function (evt) {
+            if (evt.keyCode == 13) {
+                $('#submitlg').click();
+            }
+        });
+    </script>
+}

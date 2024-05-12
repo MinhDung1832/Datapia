@@ -1,0 +1,233 @@
+﻿@using Microsoft.Ajax.Utilities;
+@{
+    ViewBag.Title = "Thông tin tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 class="mt-2"><strong>Thông tin tài khoản</strong></h4>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                <span><strong>Thông tin cơ bản</strong></span>
+                <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-edit-alt"></i>Sửa thông tin</button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label>Họ và tên</label> <br /> <br />
+                <span id="user_name">@ViewBag.acc_info.user_name</span>
+            </div>
+            <div class="col-md-6">
+                <label>Mật khẩu</label>  <br /> <br />
+                <span id="user_password">@ViewBag.acc_info.user_password</span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label>Email</label> <br /> <br />
+                <span id="email">@ViewBag.acc_info.email</span>
+            </div>
+            <div class="col-md-6">
+                <label>Điện thoại</label>  <br /> <br />
+                <span id="phone_number">@ViewBag.acc_info.phone_number</span>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                <span><strong>Gói dịch vụ đang sử dụng</strong></span>
+                <button class="btn btn-danger">Thay đổi gói</button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+                <div>
+                    <label>Gói</label>  <br /> <br />
+                    <span>Tiêu chuẩn</span>
+                </div>
+                <div>
+                    <label>Mức phí</label>  <br /> <br />
+                    <span>500.000đ/năm</span>
+                </div>
+                <div>
+                    <label>Hạn sử dụng</label>  <br /> <br />
+                    <span>31/12/2025</span>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row mt-2">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                <span><strong>Thông tin khác</strong></span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+                <div>
+                    <label>Nơi ở hiện tại</label>  <br /> <br />
+                    <span id="address">@ViewBag.acc_info.address</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+                <div>
+                    <label>Quốc tịch</label>  <br /> <br />
+                    <span id="nationality">@ViewBag.acc_info.nationality</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+                <div>
+                    <label>Số CCCD/CMND</label>  <br /> <br />
+                    <span id="cccd">@ViewBag.acc_info.cccd</span>
+                </div>
+                <div>
+                    <label>Nơi cấp</label>  <br /> <br />
+                    <span id="issued_by">@ViewBag.acc_info.issued_by</span>
+                </div>
+                <div>
+                    <label>Ngày cấp</label>  <br /> <br />
+                    <span id="license_date">@ViewBag.acc_info.license_date</span>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="download" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="download">Sửa thông tin cá nhân</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Thông tin cơ bản</strong>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right"><span class="">Họ và tên:  &nbsp;</span></div> <input type="text" id="u_user_name" class="form-control" value="@ViewBag.acc_info.user_name" />
+                    </div>
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right"><span class="">Mật khẩu:  &nbsp;</span></div><div class="input-group input-group-merge">
+                            <input type="password" id="u_user_password" name="Password" class="form-control" value="@ViewBag.acc_info.user_password" disabled>
+                            <div class="input-group-text" data-password="false">
+                                <span class="password-eye"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right"><span class="">Email:  &nbsp;</span></div> <input type="text" id="u_email" class="form-control" value="@ViewBag.acc_info.email" disabled />
+                    </div>
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right"><span class="">Điện thoại:  &nbsp;</span></div> <input type="text" id="u_phone_number" class="form-control" value="@ViewBag.acc_info.phone_number" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Thông tin khác</strong>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12" style="display: flex; align-items: center;">
+                        <div class="" style="text-align:right;width:19%;"><span class="">Nơi ở hiện tại:  &nbsp;</span></div> <input type="text" id="u_address" class="form-control" value="@ViewBag.acc_info.address" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12" style="display: flex; align-items: center;">
+                        <div class="" style="text-align:right;width:19%;"><span class="">Quốc tịch:  &nbsp;</span></div> <input type="text" id="u_nationality" class="form-control" value="@ViewBag.acc_info.nationality" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right;"><span class="">Số CCCD/CMND:  &nbsp;</span></div> <input type="text" id="u_cccd" class="form-control" value="@ViewBag.acc_info.cccd" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right;"><span class="">Nơi cấp:  &nbsp;</span></div> <input type="text" id="u_issued_by" class="form-control" value="@ViewBag.acc_info.issued_by" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6" style="display: flex; align-items: center;">
+                        <div class="w-50" style="text-align:right;"><span class="">Ngày cấp:  &nbsp;</span></div> <input type="date" id="u_license_date" class="form-control" value="@ViewBag.acc_info.license_date" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" class="btn btn-danger" onclick="js_change_info();">Lưu</button>
+            </div> <!-- end modal footer -->
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
+@section Scripts{
+    <script>
+        function js_change_info() {
+            var user_name = $('#u_user_name').val();
+            var user_password = $('#u_user_password').val();
+            var email = $('#u_email').val();
+            var phone_number = $('#u_phone_number').val();
+            var address = $('#u_address').val();
+            var nationality = $('#u_nationality').val();
+            var cccd = $('#u_cccd').val();
+            var issued_by = $('#u_issued_by').val();
+            var license_date = $('#u_license_date').val();
+
+            $('#user_name').html(user_name);
+            $('#user_password').html(user_password);
+            $('#email').html(email);
+            $('#phone_number').html(phone_number);
+            $('#address').html(address);
+            $('#nationality').html(nationality);
+            $('#cccd').html(cccd);
+            $('#issued_by').html(issued_by);
+            $('#license_date').html(license_date);
+            $.ajax({
+                url: '/Account/change_info',
+                type: 'POST',
+                data: JSON.stringify({ user_name: user_name, user_password: user_password, email: email, phone_number: phone_number, address: address, nationality: nationality, cccd: cccd, issued_by: issued_by, license_date: license_date }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        $.toast({
+                            text: "Cập nhật thông tin thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        $('#staticBackdrop1').modal('hide');
+                    } else {
+
+                    }
+                },
+                error: function () {
+                }
+
+            });
+        }
+    </script>
+}

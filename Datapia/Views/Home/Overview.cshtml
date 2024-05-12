@@ -1,0 +1,432 @@
+﻿@using Datapia.Models;
+@{
+    ViewBag.Title = "Overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+    serializer.MaxJsonLength = Int32.MaxValue;
+}
+<h4 class="mt-2"><strong>Danh sách kết nối</strong></h4>
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card p-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-floating w-100">
+                        <span>Lấy dữ liệu từ</span>
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>Select</option>
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                            </optgroup>
+                            <optgroup label="Pacific Time Zone">
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating w-100">
+                        <span>ID tài khoản/ App secret</span>
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>Select</option>
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                            </optgroup>
+                            <optgroup label="Pacific Time Zone">
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating w-100">
+                        <span>Trạng thái</span>
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>Select</option>
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                            </optgroup>
+                            <optgroup label="Pacific Time Zone">
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <div style="display:flex;flex-direction:row-reverse;">
+                    <button class="btn btn-danger">Lọc</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card p-2">
+            <div class="row">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                    <span>Bảng dữ liệu</span>
+                    <div>
+                        <button class="btn btn-outline-light"><i class="uil-file-question"></i> Hướng dẫn</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="uil-plus"></i> Thêm kết nối</button>
+                        <button class="btn btn-outline-light"><i class="uil-edit-alt"></i> Sửa kết nối</button>
+                        <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-down-arrow"></i> Tải dữ liệu</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div id="div-content-PO">
+                    @Html.Partial("~/Views/Home/Partial/__Overview.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Thông tin kết nối</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+                <div class="row">
+                    <span>Để kết nối vui lòng xem <a class="text-danger" href="#">Hướng dẫn</a> và nhập các thông tin dưới đây</span>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6" style="border-right:1px solid #808080">
+                        <div class="row">
+                            <h4><strong>Nguồn lấy dữ liệu</strong></h4>
+                        </div>
+                        <div class="row" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Lấy dữ liệu từ:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control select2" data-toggle="select2">
+                                    <option>Select</option>
+                                    <optgroup label="Alaskan/Hawaiian Time Zone">
+                                        <option value="AK">Alaska</option>
+                                        <option value="HI">Hawaii</option>
+                                    </optgroup>
+                                    <optgroup label="Pacific Time Zone">
+                                        <option value="CA">California</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="WA">Washington</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span> ID Tài khoản:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span> App secret:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span> Access token:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span> Lấy từ ngày:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h4><strong>Nguồn lưu dữ liệu</strong></h4>
+                        </div>
+                        <div class="row" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Lưu dữ liệu đến:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control select2" data-toggle="select2">
+                                    <option>Select</option>
+                                    <optgroup label="Alaskan/Hawaiian Time Zone">
+                                        <option value="AK">Alaska</option>
+                                        <option value="HI">Hawaii</option>
+                                    </optgroup>
+                                    <optgroup label="Pacific Time Zone">
+                                        <option value="CA">California</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="WA">Washington</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Link tài khoản:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Tên đăng nhập:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Mật khẩu:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-checkbox-danger mb-2">
+                        <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                        <label class="form-check-label" for="customCheckcolor5">Ngưng sử dụng</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="accordion custom-accordion" id="custom-accordion-one">
+                        <div class="card mb-0">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="m-0">
+                                    <a class="custom-accordion-title d-block"
+                                       data-bs-toggle="collapse" href="#collapseFour"
+                                       aria-expanded="true" aria-controls="collapseFour">
+                                        Chọn dữ liệu cần lấy <i class="mdi mdi-chevron-down accordion-arrow"></i>
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapseFour" class="collapse show"
+                                 aria-labelledby="headingFour"
+                                 data-bs-parent="#custom-accordion-one">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <h4><strong>Thông tin chung</strong></h4>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">ID Tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Tên tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">ID chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Tên chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">ID nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Tên nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Đơn vị tiền tệ <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Ngày bắt đầu <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Ngày kết thúc  <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <h4><strong>Nhân khẩu học</strong></h4>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Tuổi <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Quốc gia <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">ID khu vực <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Tên khu vực <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Giới tính <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <h4><strong>Phân phối quảng cáo</strong></h4>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="form-checkbox-danger mb-2">
+                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
+                                                    <label class="form-check-label" for="customCheckcolor5">Tần suất <i class="uil-question-circle text-danger w-100"></i></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" class="btn btn-danger">Kết nối</button>
+            </div> <!-- end modal footer -->
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
+
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="download" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="download">Tải dữ liệu</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h4><strong>Thời gian truy vấn dữ liệu</strong></h4>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Từ ngày:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h4><strong> &nbsp;</strong></h4>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Từ ngày:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" class="btn btn-danger">Tải dữ liệu</button>
+            </div> <!-- end modal footer -->
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var a = $("#fixed-header-datatable").DataTable({
+                responsive: !0,
+                language: {
+                    paginate: {
+                        previous: "<i class='mdi mdi-chevron-left'>",
+                        next: "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                drawCallback: function () {
+                    $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+                }
+            });
+            new $.fn.dataTable.FixedHeader(a)
+        });
+    </script>
+}
