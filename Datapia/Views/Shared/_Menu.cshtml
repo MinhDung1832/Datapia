@@ -56,7 +56,15 @@
                     <span> Thông tin tài khoản </span>
                 </a>
             </li>
-
+            @if (Session["role_code"].ToString() != "200")
+            {
+                <li class="side-nav-item">
+                    <a href="/Account/AccManagement" class="side-nav-link">
+                        <i class="uil-user"></i>
+                        <span> Quản lý tài khoản </span>
+                    </a>
+                </li>
+            }
         </ul>
         <!--- End Sidemenu -->
 

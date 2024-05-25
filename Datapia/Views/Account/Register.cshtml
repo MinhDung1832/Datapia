@@ -25,7 +25,6 @@
             <div class="col-xxl-4 col-lg-5">
                 <!-- Logo -->
 
-
                 <div class="text-left w-100 m-auto">
                     <h4 class="text-dark-50 text-left pb-0 fw-bold">Đăng ký</h4>
                 </div>
@@ -36,49 +35,54 @@
                         <p style="color:red;text-align: center;">@Session["err"].ToString()</p>
                     }
                     @Html.AntiForgeryToken()
-                <div class="mb-3">
-                    <label for="user_code" class="form-label">Tên đăng nhập</label>
-                    <input class="form-control" asp-for="user_code" type="text" id="user_code" name="user_code" placeholder="Enter your name" required>
-                    <span asp-validation-for="user_code" style="color:red"></span>
-                </div>
+                    <div class="mb-3">
+                        <label for="user_code" class="form-label">Tên đăng nhập</label>
+                        <input class="form-control" asp-for="user_code" type="text" id="user_code" name="user_code" placeholder="Enter your name" required autocomplete="off">
+                        <span asp-validation-for="user_code" style="color:red"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="user_name" class="form-label">Họ và tên</label>
-                    <input class="form-control" type="text" asp-for="user_name" id="user_name" name="user_name" placeholder="Enter your name" required>
-                    <span asp-validation-for="user_name" style="color:red"></span>
-                </div>
+                    <div class="mb-3">
+                        <label for="user_name" class="form-label">Họ và tên</label>
+                        <input class="form-control" type="text" asp-for="user_name" id="user_name" name="user_name" placeholder="Enter your name" required autocomplete="off">
+                        <span asp-validation-for="user_name" style="color:red"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="emailaddress" class="form-label">Email address</label>
-                    <input class="form-control" type="email" asp-for="emailaddress" id="emailaddress" name="emailaddress" required placeholder="Enter your email">
-                    <span asp-validation-for="emailaddress" style="color:red"></span>
-                </div>
+                    <div class="mb-3">
+                        <label for="emailaddress" class="form-label">Email address</label>
+                        <input class="form-control" type="email" asp-for="emailaddress" id="emailaddress" name="emailaddress" required placeholder="Enter your email" autocomplete="off">
+                        <span asp-validation-for="emailaddress" style="color:red"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <div class="input-group input-group-merge">
-                        <input type="password" id="password" asp-for="password" name="password" class="form-control" placeholder="Enter your password">
-                        <div class="input-group-text" data-password="false">
-                            <span class="password-eye"></span>
+                    <div class="mb-3">
+                        <label class="form-label">Mã xác thực</label>
+                        <div class="input-group">
+                            <input type="text" asp-for="otp" id="otp" name="otp" class="form-control" placeholder="Nhập mã xác thực từ mail" aria-label="Recipient's username" required autocomplete="off">
+                            <button class="btn btn-dark" type="button" onclick="js_send_mail();">Nhận mã</button>
                         </div>
                     </div>
-                    <span asp-validation-for="password" style="color:red"></span>
-                </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group input-group-merge">
+                            <input type="password" id="password" asp-for="password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="off">
+                            <div class="input-group-text" data-password="false">
+                                <span class="password-eye"></span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="password" style="color:red"></span>
+                    </div>
 
                     @*<div class="mb-3">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkbox-signup">
-                            <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
-                        </div>
-                    </div>*@
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                            </div>
+                        </div>*@
 
                     <div class="mb-3 text-center">
                         <button class="btn btn-primary" type="submit" id="submitlg"> Sign Up </button>
                     </div>
-
-
                 </form>
-
 
                 <div class="row mt-3">
                     <div class="col-12 text-center">
@@ -86,7 +90,6 @@
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->
-
             </div> <!-- end col -->
         </div>
         <!-- end row -->
@@ -103,5 +106,69 @@
                 $('#submitlg').click();
             }
         });
+
+        function js_send_mail() {
+            var mail = $('#emailaddress').val();
+
+            $.ajax({
+                url: '/Account/send_mail',
+                type: 'POST',
+                data: JSON.stringify({ mail: mail }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        $.toast({
+                            text: "Mã xác thực đã được gửi đến mail của bạn, vui lòng kiểm tra mã xác thực!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'info', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: 'rgb(34 211 238)',
+                        });
+                    }
+                    if (data == 2) {
+                        $.toast({
+                            text: "Gửi mã xác thực không thành công, vui lòng kiểm tra lại!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'error', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: 'rgb(220 38 38)',
+                        });
+                    }
+                    if (data == 3) {
+                        $.toast({
+                            text: "Email đã sử dụng đăng ký tài khoản, vui lòng kiểm tra lại!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'warning', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#ffc35a',
+                            bgColor: '#FFBE4D',
+                        });
+                    }
+                },
+                error: function () {
+                }
+
+            });
+        }
     </script>
 }

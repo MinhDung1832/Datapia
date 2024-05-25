@@ -25,7 +25,7 @@ public class BaseApiClient
     private static string APIKafka = ConfigurationManager.AppSettings.Get("APIKafka");
     private static string TokenKafka = ConfigurationManager.AppSettings.Get("TokenKafka");
 
-    public async static Task<API_returnAPI_Call<TKey>> CallAsync_API<TKey>(string Url)
+    public static async Task<API_returnAPI_Call<TKey>> CallAsync_API<TKey>(string Url)
     {
         API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
         try
@@ -58,7 +58,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI> GetAsync_API(string Url)
+
+    public static async Task<API_returnAPI> GetAsync_API(string Url)
     {
         API_returnAPI rt = new API_returnAPI();
         try
@@ -89,7 +90,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI_Call<TKey>> PostAsync_Param_API<TKey, TSearch>(string Url, TSearch it)
+
+    public static async Task<API_returnAPI_Call<TKey>> PostAsync_Param_API<TKey, TSearch>(string Url, TSearch it)
     {
         API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
         var client = new HttpClient();
@@ -125,7 +127,8 @@ public class BaseApiClient
         }
         return rt;
     }// Search obj
-    public async static Task<API_returnAPI> PostAsync_API<TSearch>(string Url, TSearch it)
+
+    public static async Task<API_returnAPI> PostAsync_API<TSearch>(string Url, TSearch it)
     {
         API_returnAPI rt = new API_returnAPI();
         var client = new HttpClient();
@@ -159,7 +162,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI> DeleteAsync_API(string Url)
+
+    public static async Task<API_returnAPI> DeleteAsync_API(string Url)
     {
         API_returnAPI rt = new API_returnAPI();
         try
@@ -187,7 +191,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI_Call<TKey>> CallAsync_API_V1<TKey>(string BaseAddress, string TokenAPI, string Url)
+
+    public static async Task<API_returnAPI_Call<TKey>> CallAsync_API_V1<TKey>(string BaseAddress, string TokenAPI, string Url)
     {
         API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
         try
@@ -224,7 +229,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI_Call<TKey>> CallAsync_API_V2<TKey>(string BaseAddress, string TokenAPI, string Url)
+
+    public static async Task<API_returnAPI_Call<TKey>> CallAsync_API_V2<TKey>(string BaseAddress, string TokenAPI, string Url)
     {
         API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
         try
@@ -261,7 +267,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI> GetAsync_API_V1(string BaseAddress, string TokenAPI, string Url)
+
+    public static async Task<API_returnAPI> GetAsync_API_V1(string BaseAddress, string TokenAPI, string Url)
     {
         API_returnAPI rt = new API_returnAPI();
         try
@@ -296,7 +303,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI_Call<TKey>> CallAsync_WordPress<TKey>(string BaseAddress, string TokenAPI, string Url)
+
+    public static async Task<API_returnAPI_Call<TKey>> CallAsync_WordPress<TKey>(string BaseAddress, string TokenAPI, string Url)
     {
         API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
         try
@@ -333,7 +341,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI_Call<TKey>> PostAsync_Param_API_V1<TKey, TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
+
+    public static async Task<API_returnAPI_Call<TKey>> PostAsync_Param_API_V1<TKey, TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
     {
         API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
         var client = new HttpClient();
@@ -373,7 +382,8 @@ public class BaseApiClient
         }
         return rt;
     }// Search obj
-    public async static Task<API_returnAPI> PostAsync_API_V1<TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
+
+    public static async Task<API_returnAPI> PostAsync_API_V1<TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
     {
         API_returnAPI rt = new API_returnAPI();
         var client = new HttpClient();
@@ -411,7 +421,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI> PostAsync_API_Noti<TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
+
+    public static async Task<API_returnAPI> PostAsync_API_Noti<TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
     {
         API_returnAPI rt = new API_returnAPI();
         var client = new HttpClient();
@@ -450,7 +461,8 @@ public class BaseApiClient
         }
         return rt;
     }
-    public async static Task<API_returnAPI> DeleteAsync_API_V1(string BaseAddress, string TokenAPI, string Url)
+
+    public static async Task<API_returnAPI> DeleteAsync_API_V1(string BaseAddress, string TokenAPI, string Url)
     {
         API_returnAPI rt = new API_returnAPI();
         try
@@ -482,7 +494,7 @@ public class BaseApiClient
         return rt;
     }
 
-    public async static Task<API_returnAPI> PostAsync_API_VV<TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
+    public static async Task<API_returnAPI> PostAsync_API_VV<TSearch>(string BaseAddress, string TokenAPI, string Url, TSearch it)
     {
         API_returnAPI rt = new API_returnAPI();
         var client = new HttpClient();
@@ -522,6 +534,7 @@ public class BaseApiClient
         }
         return rt;
     }
+
     public class Message
     {
         public string token { get; set; }
@@ -534,4 +547,43 @@ public class BaseApiClient
         public Message message { get; set; }
     }
 
+    public static async Task<API_returnAPI_Call<TKey>> CallAsync_FastApi<TKey>(string BaseAddress, string TokenAPI, string Url)
+    {
+        API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
+        try
+        {
+            var client = new HttpClient();
+            //BaseAddress = ConfigurationManager.AppSettings.Get(BaseAddress);
+                string key = ConfigurationManager.AppSettings.Get(TokenAPI);
+            string url = BaseAddress + Url + "?token=" + key;
+            //if (!String.IsNullOrEmpty(TokenAPI))
+            //{
+            //    string key = ConfigurationManager.AppSettings.Get(TokenAPI);
+            //    client.DefaultRequestHeaders.Add("Authorization", key);
+            //}
+            client.BaseAddress = new Uri(url);
+
+            HttpResponseMessage response = await client.GetAsync("");
+            string res = await response.Content.ReadAsStringAsync();
+            if ((int)response.StatusCode == 200)
+            {
+                rt.StatusCode = true;
+                //rt.Items = res;
+                var obj = JsonConvert.DeserializeObject<List<TKey>>(res);
+                //var abc =  JObject.Parse(res).ToString();
+                rt.Items = obj;
+            }
+            else
+            {
+                rt.StatusCode = false;
+                rt.Items = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            rt.StatusCode = false;
+            rt.Items = null;
+        }
+        return rt;
+    }
 }

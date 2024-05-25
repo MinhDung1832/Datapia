@@ -38,7 +38,7 @@
                     @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label asp-for="UserId" class="form-label">Tên đăng nhập</label>
-                        <input class="form-control" asp-for="UserId" id="UserId" name="UserId" placeholder="Tên đăng nhập">
+                        <input class="form-control" asp-for="UserId" id="UserId" name="UserId" placeholder="Tên đăng nhập" required autocomplete="off">
                         <span asp-validation-for="UserId" style="color:red"></span>
                     </div>
 
@@ -46,7 +46,7 @@
                         <a href="pages-recoverpw.html" class="text-muted float-end"><small>Forgot your password?</small></a>
                         <label asp-for="Password" class="form-label">Mật khẩu</label>
                         <div class="input-group input-group-merge">
-                            <input type="password" asp-for="Password" id="Password" name="Password" class="form-control" placeholder="Nhập mật khẩu">
+                            <input type="password" asp-for="Password" id="Password" name="Password" class="form-control" placeholder="Nhập mật khẩu" required autocomplete="off">
                             <div class="input-group-text" data-password="false">
                                 <span class="password-eye"></span>
                             </div>

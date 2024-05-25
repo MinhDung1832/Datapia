@@ -10,3 +10,9 @@ D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.AssemblyReference.cache
 D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.CoreCompileInputs.cache
 D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.dll
 D:\Warehouse\Util.Encrypt\obj\Debug\Util.Encrypt.pdb
+D:\Datapia\Util.Encrypt\bin\Debug\Util.Encrypt.dll
+D:\Datapia\Util.Encrypt\bin\Debug\Util.Encrypt.pdb
+D:\Datapia\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.AssemblyReference.cache
+D:\Datapia\Util.Encrypt\obj\Debug\Util.Encrypt.csproj.CoreCompileInputs.cache
+D:\Datapia\Util.Encrypt\obj\Debug\Util.Encrypt.dll
+D:\Datapia\Util.Encrypt\obj\Debug\Util.Encrypt.pdb

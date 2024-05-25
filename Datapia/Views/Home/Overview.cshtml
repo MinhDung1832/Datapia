@@ -12,65 +12,37 @@
         <div class="card p-2">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-floating w-100">
-                        <span>Lấy dữ liệu từ</span>
-                        <select class="form-control select2" data-toggle="select2">
-                            <option>Select</option>
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                            </optgroup>
-                            <optgroup label="Pacific Time Zone">
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                            </optgroup>
+                    <div class="">
+                        <label>Lấy dữ liệu từ</label>
+                        <select id="data_from_s" class="form-control select2" data-toggle="select2">
+                            <option value="">Chọn nguồn dữ liệu</option>
+                            <option value="FB">Facebook</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-floating w-100">
-                        <span>ID tài khoản/ App secret</span>
-                        <select class="form-control select2" data-toggle="select2">
-                            <option>Select</option>
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                            </optgroup>
-                            <optgroup label="Pacific Time Zone">
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                            </optgroup>
+                    <div class="">
+                        <label>ID tài khoản/ App secret</label>
+                        <select id="acc_id_val_s" class="form-control select2" data-toggle="select2">
+                            <option value="">Select</option>
+                            <option value="FB">Facebook</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-floating w-100">
-                        <span>Trạng thái</span>
-                        <select class="form-control select2" data-toggle="select2">
-                            <option>Select</option>
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                            </optgroup>
-                            <optgroup label="Pacific Time Zone">
-                                <option value="CA">California</option>
-                                <option value="NV">Nevada</option>
-                                <option value="OR">Oregon</option>
-                                <option value="WA">Washington</option>
-                            </optgroup>
+                    <div class="">
+                        <label>Trạng thái</label>
+                        <select id="status_s" class="form-control select2" data-toggle="select2">
+                            <option value="">Chọn trạng thái</option>
+                           
                         </select>
                     </div>
                 </div>
-
             </div>
             <hr />
             <div class="row">
                 <div style="display:flex;flex-direction:row-reverse;">
-                    <button class="btn btn-danger">Lọc</button>
+                    <button class="btn btn-danger" onclick="js_GetList();">Lọc</button>
                 </div>
             </div>
         </div>
@@ -85,14 +57,14 @@
                     <span>Bảng dữ liệu</span>
                     <div>
                         <button class="btn btn-outline-light"><i class="uil-file-question"></i> Hướng dẫn</button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="uil-plus"></i> Thêm kết nối</button>
-                        <button class="btn btn-outline-light"><i class="uil-edit-alt"></i> Sửa kết nối</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="js_clear_form();"><i class="uil-plus"></i> Thêm kết nối</button>
+                        <button class="btn btn-outline-light" onclick="js_clear_form();"><i class="uil-edit-alt"></i> Sửa kết nối</button>
                         <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-down-arrow"></i> Tải dữ liệu</button>
                     </div>
                 </div>
             </div>
             <div class="row mt-2">
-                <div id="div-content-PO">
+                <div id="div-content">
                     @Html.Partial("~/Views/Home/Partial/__Overview.cshtml")
                 </div>
             </div>
@@ -122,18 +94,9 @@
                                 <span style="line-height:40px;">Lấy dữ liệu từ:</span>
                             </div>
                             <div class="col-md-8">
-                                <select class="form-control select2" data-toggle="select2">
-                                    <option>Select</option>
-                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                        <option value="AK">Alaska</option>
-                                        <option value="HI">Hawaii</option>
-                                    </optgroup>
-                                    <optgroup label="Pacific Time Zone">
-                                        <option value="CA">California</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="WA">Washington</option>
-                                    </optgroup>
+                                <select id="data_from" class="form-control select2" data-toggle="select2">
+                                    <option value="">Chọn nguồn dữ liệu</option>
+                                    <option value="FB">Facebook</option>
                                 </select>
                             </div>
                         </div>
@@ -142,7 +105,7 @@
                                 <span style="line-height:40px;"><span class="text-danger">*</span> ID Tài khoản:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" />
+                                <input id="acc_id_val" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="row mt-2" style="">
@@ -150,7 +113,7 @@
                                 <span style="line-height:40px;"><span class="text-danger">*</span> App secret:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" />
+                                <input id="app_secret" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="row mt-2" style="">
@@ -158,7 +121,7 @@
                                 <span style="line-height:40px;"><span class="text-danger">*</span> Access token:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" />
+                                <input id="access_token" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="row mt-2" style="">
@@ -166,7 +129,7 @@
                                 <span style="line-height:40px;"><span class="text-danger">*</span> Lấy từ ngày:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="date" class="form-control" />
+                                <input id="get_from_date" type="date" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -179,18 +142,9 @@
                                 <span style="line-height:40px;">Lưu dữ liệu đến:</span>
                             </div>
                             <div class="col-md-8">
-                                <select class="form-control select2" data-toggle="select2">
-                                    <option>Select</option>
-                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                        <option value="AK">Alaska</option>
-                                        <option value="HI">Hawaii</option>
-                                    </optgroup>
-                                    <optgroup label="Pacific Time Zone">
-                                        <option value="CA">California</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="WA">Washington</option>
-                                    </optgroup>
+                                <select id="data_to" class="form-control select2" data-toggle="select2">
+                                    <option value="">Lưu dữ liệu đến</option>
+                                    <option value="GS">Google sheet</option>
                                 </select>
                             </div>
                         </div>
@@ -199,7 +153,7 @@
                                 <span style="line-height:40px;">Link tài khoản:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" />
+                                <input id="acc_link" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="row mt-2" style="">
@@ -207,7 +161,7 @@
                                 <span style="line-height:40px;">Tên đăng nhập:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" />
+                                <input id="user_code" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="row mt-2" style="">
@@ -215,15 +169,15 @@
                                 <span style="line-height:40px;">Mật khẩu:</span>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" />
+                                <input id="password" type="text" class="form-control" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="form-checkbox-danger mb-2">
-                        <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                        <label class="form-check-label" for="customCheckcolor5">Ngưng sử dụng</label>
+                        <input type="checkbox" class="form-check-input" id="stop_using" checked>
+                        <label class="form-check-label" for="stop_using">Ngưng sử dụng</label>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -250,59 +204,58 @@
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">ID Tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="acc_id" checked>
+                                                    <label class="form-check-label" for="acc_id">ID Tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Tên tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="acc_name" checked>
+                                                    <label class="form-check-label" for="acc_name">Tên tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">ID chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="camp_id" checked>
+                                                    <label class="form-check-label" for="camp_id">ID chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Tên chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="camp_name" checked>
+                                                    <label class="form-check-label" for="camp_name">Tên chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">ID nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="ad_group_id" checked>
+                                                    <label class="form-check-label" for="ad_group_id">ID nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Tên nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="ad_group_name" checked>
+                                                    <label class="form-check-label" for="ad_group_name">Tên nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Đơn vị tiền tệ <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="currency_unit" checked>
+                                                    <label class="form-check-label" for="currency_unit">Đơn vị tiền tệ <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Ngày bắt đầu <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="start_date" checked>
+                                                    <label class="form-check-label" for="start_date">Ngày bắt đầu <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Ngày kết thúc  <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="end_date" checked>
+                                                    <label class="form-check-label" for="end_date">Ngày kết thúc  <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-md-6">
                                             <div class="row">
@@ -310,32 +263,32 @@
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Tuổi <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="year_old" checked>
+                                                    <label class="form-check-label" for="year_old">Tuổi <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Quốc gia <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="nation" checked>
+                                                    <label class="form-check-label" for="nation">Quốc gia <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">ID khu vực <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="region_id" checked>
+                                                    <label class="form-check-label" for="region_id">ID khu vực <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Tên khu vực <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="region_name" checked>
+                                                    <label class="form-check-label" for="region_name">Tên khu vực <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Giới tính <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="gender" checked>
+                                                    <label class="form-check-label" for="gender">Giới tính <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
@@ -343,24 +296,24 @@
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckcolor5" checked>
-                                                    <label class="form-check-label" for="customCheckcolor5">Tần suất <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    <input type="checkbox" class="form-check-input" id="performance" checked>
+                                                    <label class="form-check-label" for="performance">Tần suất <i class="uil-question-circle text-danger w-100"></i></label>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
-                <button type="button" class="btn btn-danger">Kết nối</button>
+                <button id="add_config" type="button" class="btn btn-danger" onclick="js_config();" style="display:block;">Kết nối</button>
+                <button type="button" class="btn btn-danger" onclick="js_config();" style="display:none;">Sửa kết nối</button>
             </div> <!-- end modal footer -->
+            <input hidden id="id" value="0" />
         </div> <!-- end modal content-->
     </div> <!-- end modal dialog-->
 </div> <!-- end modal-->
@@ -402,7 +355,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
@@ -414,9 +366,60 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            var a = $("#fixed-header-datatable").DataTable({
+            //var date = new Date();
+            //var dateStr =
+            //    ("00" + date.getDate()).slice(-2) + "/" +
+            //    ("00" + (date.getMonth() + 1)).slice(-2) + "/" +
+            //    date.getFullYear() + " " +
+            //    ("00" + date.getHours()).slice(-2) + ":" +
+            //    ("00" + date.getMinutes()).slice(-2) + ":" +
+            //    ("00" + date.getSeconds()).slice(-2);
+            //var a = $("#fixed-header-datatable").DataTable({
+            //    responsive: !0,
+            //    buttons: [
+            //        {
+            //            extend: "copy",
+            //            className: "btn-light"
+            //        },
+            //        {
+            //            extend: "print",
+            //            className: "btn-light"
+            //        },
+            //        {
+            //            extend: "pdf",
+            //            className: "btn-light"
+            //        }
+            //    ],
+            //    language: {
+            //        paginate: {
+            //            previous: "<i class='mdi mdi-chevron-left'>",
+            //            next: "<i class='mdi mdi-chevron-right'>"
+            //        }
+            //    },
+            //    drawCallback: function () {
+            //        $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            //    }
+            //});
+            //new $.fn.dataTable.FixedHeader(a)
+            js_GetList();
+        });
+
+        function js_ReloadTable() {
+            $('#fixed-header-datatable').DataTable({
                 responsive: !0,
+                lengthMenu: [[20, 50, 70, 100, -1], [20, 50, 70, 100, 'll']],
+                "searching": false,
+                fixedHeader: true,
+                fixedHeader: {
+                    headerOffset: 56
+                },
+                columnDefs: [
+                    { 'targets': 0, 'orderable': false },
+                ],
+                autoWidth: false,
+                order: [],
                 language: {
+                    "emptyTable": "Không có dữ liệu !",
                     paginate: {
                         previous: "<i class='mdi mdi-chevron-left'>",
                         next: "<i class='mdi mdi-chevron-right'>"
@@ -426,7 +429,244 @@
                     $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
                 }
             });
-            new $.fn.dataTable.FixedHeader(a)
-        });
+        }
+
+        function js_GetList() {
+            window.scrollTo(0, 0);
+            var data_from = $("#data_from_s").val();
+            var acc_id_val = $("#acc_id_val_s").val();
+            var status = $("#status_s").val();
+
+            $.ajax({
+                url: '/Home/GetListConfig',
+                type: 'POST',
+                data: JSON.stringify({
+                    data_from: data_from, acc_id_val: acc_id_val, status: status
+                }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                    js_Loading(true, 1);
+                },
+                success: function (data) {
+                    $('#div-content').html(data);
+                    js_ReloadTable();
+                    js_Loading(false, 1);
+                },
+                error: function () {
+                    js_Loading(false, 1);
+                }
+            });
+        }
+
+        function js_get_detail(id) {
+            window.scrollTo(0, 0);
+
+            $.ajax({
+                url: '/Home/GetConfigDetail',
+                type: 'POST',
+                data: JSON.stringify({
+                    id: id
+                }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                    //js_Loading(true, 1);
+                },
+                success: function (data) {
+                    if (data != null) {
+                        console.log(data);
+                        $('#id').val(data.id);
+                        $('#data_from').val(data.data_from).trigger('change');
+                        $('#acc_id_val').val(data.acc_id_val);
+                        $('#app_secret').val(data.app_secret);
+                        $('#access_token').val(data.access_token);
+                        $('#get_from_date').val(data.get_from_date);
+                        $('#data_to').val(data.data_to).trigger('change');
+                        $('#acc_link').val(data.acc_link);
+                        $('#user_code').val(data.user_code);
+                        $('#password').val(data.password);
+                        $('#stop_using').prop("checked", data.stop_using);
+                        $('#acc_id').prop("checked", data.acc_id);
+                        $('#acc_name').prop("checked", data.acc_name);
+                        $('#camp_id').prop("checked", data.camp_id);
+                        $('#camp_name').prop("checked", data.camp_name);
+                        $('#ad_group_id').prop("checked", data.ad_group_id);
+                        $('#ad_group_name').prop("checked", data.ad_group_name);
+                        $('#currency_unit').prop("checked", data.currency_unit);
+                        $('#start_date').prop("checked", data.start_date);
+                        $('#end_date').prop("checked", data.end_date);
+                        $('#year_old').prop("checked", data.year_old);
+                        $('#nation').prop("checked", data.nation);
+                        $('#region_id').prop("checked", data.region_id);
+                        $('#region_name').prop("checked", data.region_name);
+                        $('#gender').prop("checked", data.gender);
+                        $('#performance').prop("checked", data.performance);
+
+                        if (data.id > 0) {
+                            $('#add_config').html('Sửa kết nối');
+                        } else {
+                            $('#add_config').html('Kết nối');
+                        }
+
+                        $('#staticBackdrop').modal('show');
+                    }
+
+                    //js_Loading(false, 1);
+                },
+                error: function () {
+                    //js_Loading(false, 1);
+                }
+            });
+        }
+
+        function js_clear_form() {
+            $('#data_from').val('').trigger('change');
+            $('#acc_id_val').val('');
+            $('#app_secret').val('');
+            $('#access_token').val('');
+            $('#get_from_date').val('');
+            $('#data_to').val('').trigger('change');
+            $('#acc_link').val('');
+            $('#user_code').val('');
+            $('#password').val('');
+            $('#stop_using').prop("checked", true);
+            $('#acc_id').prop("checked", true);
+            $('#acc_name').prop("checked", true);
+            $('#camp_id').prop("checked", true);
+            $('#camp_name').prop("checked", true);
+            $('#ad_group_id').prop("checked", true);
+            $('#ad_group_name').prop("checked", true);
+            $('#currency_unit').prop("checked", true);
+            $('#start_date').prop("checked", true);
+            $('#end_date').prop("checked", true);
+            $('#year_old').prop("checked", true);
+            $('#nation').prop("checked", true);
+            $('#region_id').prop("checked", true);
+            $('#region_name').prop("checked", true);
+            $('#gender').prop("checked", true);
+            $('#performance').prop("checked", true);
+        }
+
+        function js_config() {
+            var lst = {};
+            lst.id = $('#id').val();
+            lst.data_from = $('#data_from').val();
+            lst.acc_id_val = $('#acc_id_val').val();
+            lst.app_secret = $('#app_secret').val();
+            lst.access_token = $('#access_token').val();
+            lst.get_from_date = $('#get_from_date').val();
+            lst.data_to = $('#data_to').val();
+            lst.acc_link = $('#acc_link').val();
+            lst.user_code = $('#user_code').val();
+            lst.password = $('#password').val();
+            lst.stop_using = $('#stop_using').is(":checked");
+            lst.acc_id = $('#acc_id').is(":checked");
+            lst.acc_name = $('#acc_name').is(":checked");
+            lst.camp_id = $('#camp_id').is(":checked");
+            lst.camp_name = $('#camp_name').is(":checked");
+            lst.ad_group_id = $('#ad_group_id').is(":checked");
+            lst.ad_group_name = $('#ad_group_name').is(":checked");
+            lst.currency_unit = $('#currency_unit').is(":checked");
+            lst.start_date = $('#start_date').is(":checked");
+            lst.end_date = $('#end_date').is(":checked");
+            lst.year_old = $('#year_old').is(":checked");
+            lst.nation = $('#nation').is(":checked");
+            lst.region_id = $('#region_id').is(":checked");
+            lst.region_name = $('#region_name').is(":checked");
+            lst.gender = $('#gender').is(":checked");
+            lst.performance = $('#performance').is(":checked");
+
+            //console.log(lst);
+            $.ajax({
+                url: '/Home/InsertUpdateConfig',
+                type: 'POST',
+                data: JSON.stringify({ lst: lst }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        $.toast({
+                            text: "Thêm mới thông tin kết nối thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        $('#id').val(0);
+                        $('#add_config').html('Kết nối');
+                        $('#staticBackdrop').modal('hide');
+                    }
+                    if (data.code == 2) {
+                        $.toast({
+                            text: "Cập nhật thông tin kết nối thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        $('#id').val(0);
+                        $('#add_config').html('Kết nối');
+                        $('#staticBackdrop').modal('hide');
+                    }
+                    if (data.code == 3) {
+                        $.toast({
+                            text: "Thêm mới thông tin kết nối không thành công, vui lòng thử lại sau!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'danger', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#FF0004',
+                        });
+                        $('#staticBackdrop').modal('show');
+                    }
+                    if (data.code == 4) {
+                        $.toast({
+                            text: "Cập nhật thông tin kết nối không thành công, vui lòng thử lại sau!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'danger', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#FF0004',
+                        });
+                        $('#staticBackdrop').modal('show');
+                    }
+
+                },
+                error: function () {
+                }
+
+            });
+        }
+
+        //function toggleCheckbox(id) {
+        //    var check = $('#' + id).is(":checked");
+        //    if (check == false) {
+        //        $('#' + id).prop('checked', false);
+        //    } else {
+        //        $('#' + id).prop('checked', true);
+        //    }
+        //}
     </script>
 }
