@@ -123,6 +123,19 @@ namespace Datapia.Controllers
             }
         }
 
+        public ActionResult add_acc(string username, string fullname, string pass, string email)
+        {
+            var regis = BaseConnectionSql.Execute_Update_Insert_V1("strConn", "sp_user_register", username, fullname, Common.MD5_encript(pass), pass, email);
+            if (regis)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(2);
+            }
+        }
+
         public static bool sendEmail(string emailAddress, string str_title, string str_content)
         {
             try

@@ -4,24 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h4 class="mt-2"><strong>Quản lý tài khoản</strong></h4>
-<div>
-    <input type="checkbox" id="switch_4" checked="" data-switch="success">
-    <label for="switch_4" data-on-label="Yes" data-off-label="No"></label>
-</div>
+@*<div>
+        <input type="checkbox" id="switch_4" checked="" data-switch="success">
+        <label for="switch_4" data-on-label="Yes" data-off-label="No"></label>
+    </div>*@
 <div class="row mt-2">
     <div class="col-md-12">
         <div class="card p-2">
-            @*<div class="row">
-                    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                        <span>Bảng dữ liệu</span>
-                        <div>
-                            <button class="btn btn-outline-light"><i class="uil-file-question"></i> Hướng dẫn</button>
-                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="js_clear_form();"><i class="uil-plus"></i> Thêm kết nối</button>
-                            <button class="btn btn-outline-light" onclick="js_clear_form();"><i class="uil-edit-alt"></i> Sửa kết nối</button>
-                            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-down-arrow"></i> Tải dữ liệu</button>
-                        </div>
+            <div class="row">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                    <span>Bảng dữ liệu</span>
+                    <div>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="js_clear_form();"><i class="uil-plus"></i> Thêm tài khoản</button>
                     </div>
-                </div>*@
+                </div>
+            </div>
             <div class="row mt-2">
                 <div id="div-content">
                     @Html.Partial("~/Views/Account/Partial/__AccManagement.cshtml")
@@ -31,11 +28,92 @@
     </div>
 </div>
 
+<div class="modal fade" id="add_account" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="download" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="download">Thêm tài khoản</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        @*<div class="row">
+                                <h4><strong>Thời gian truy vấn dữ liệu</strong></h4>
+                            </div>*@
+                        <div class="row" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Tài khoản</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="username" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @*<div class="row">
+                                <h4><strong> &nbsp;</strong></h4>
+                            </div>*@
+                        <div class="row" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Họ tên</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="fullname" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @*<div class="row">
+                                <h4><strong>Thời gian truy vấn dữ liệu</strong></h4>
+                            </div>*@
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Mật khẩu</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="pass" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @*<div class="row">
+                                <h4><strong> &nbsp;</strong></h4>
+                            </div>*@
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Email</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="email" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" onclick="js_add_account();" class="btn btn-danger">Tạo tài khoản</button>
+            </div> <!-- end modal footer -->
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
+
 @section Scripts{
     <script>
         $(document).ready(function () {
             js_GetList();
         });
+        function js_clear_form() {
+            $('#username').val('');
+            $('#fullname').val('');
+            $('#pass').val('');
+            $('#email').val('');
+            $('#add_account').modal('show');
+        }
         function js_ReloadTable() {
             $('#fixed-header-datatable').DataTable({
                 responsive: !0,
@@ -114,6 +192,110 @@
                     } else {
 
                     }
+                },
+                error: function () {
+                }
+
+            });
+        }
+        function js_add_account() {
+            var username = $('#username').val();
+            var fullname = $('#fullname').val();
+            var pass = $('#pass').val();
+            var email = $('#email').val();
+
+            if (username == "") {
+                $.toast({
+                    text: "Vui lòng nhập tài khoản!", // Text that is to be shown in the toast
+                    heading: 'Thông báo', // Optional heading to be shown on the toast
+                    icon: 'error', // Type of toast icon
+                    showHideTransition: 'slide', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: 'rgb(220 38 38)',
+                });
+                return;
+            }
+
+            if (fullname == "") {
+                $.toast({
+                    text: "Vui lòng nhập họ tên!", // Text that is to be shown in the toast
+                    heading: 'Thông báo', // Optional heading to be shown on the toast
+                    icon: 'error', // Type of toast icon
+                    showHideTransition: 'slide', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: 'rgb(220 38 38)',
+                });
+                return;
+            }
+
+            if (pass == "") {
+                $.toast({
+                    text: "Vui lòng nhập mật khẩu!", // Text that is to be shown in the toast
+                    heading: 'Thông báo', // Optional heading to be shown on the toast
+                    icon: 'error', // Type of toast icon
+                    showHideTransition: 'slide', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: 'rgb(220 38 38)',
+                });
+                return;
+            }
+
+            $.ajax({
+                url: '/Account/add_acc',
+                type: 'POST',
+                data: JSON.stringify({ username: username, fullname: fullname, pass: pass, email: email }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        $.toast({
+                            text: "Thêm tài khoản thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        js_GetList();
+                        $('#add_account').modal('hide');
+                    }
+                    if (data == 2) {
+                        $.toast({
+                            text: "Thêm tài khoản không thành công, vui lòng kiểm tra lại!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'error', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: 'rgb(220 38 38)',
+                        });
+                    }
+
                 },
                 error: function () {
                 }

@@ -1,20 +1,27 @@
 ﻿@using System.Data;
-<div class="">
-    <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100">
-        <thead>
+<div class="table-responsive">
+    <table id="fixed-header-datatable" class="table table-centered w-100 dt-responsive ">
+        <thead class="table-light">
             <tr>
+                @*<th class="all" style="width: 20px;" hidden>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="customCheck_0">
+                            <label class="form-check-label" for="customCheck_0">&nbsp;</label>
+                        </div>
+                    </th>*@
                 <th>Lấy dữ liệu từ</th>
                 <th>ID Tài khoản</th>
                 <th>App secret</th>
                 <th>Access Token</th>
                 <th>Lấy từ ngày</th>
-                <th>Lưu trữ đến</th>
-                <th>Link tài khoản</th>
-                <th>Tên đăng nhập</th>
-                <th>Mật khẩu</th>
+                @*<th>Lưu trữ đến</th>
+                    <th>Link tài khoản</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Mật khẩu</th>*@
                 <th>Trạng thái</th>
                 <th>Ngày đồng bộ gần nhất</th>
-                <th style="width: 125px;">Action</th>
+                <th>Action</th>
+                @*<th style="width: 125px;">Action</th>*@
             </tr>
         </thead>
 
@@ -29,7 +36,13 @@
                         foreach (DataRow item in dt.Rows)
                         {
                             <tr>
-                                <td class="text-left">
+                                @*<td>
+                                        <div class="form-check">
+                                            <input type="radio" name="customRadio" class="form-check-input" id="customCheck_@i">
+                                            <label class="form-check-label" for="customCheck_@i">&nbsp;</label>
+                                        </div>
+                                    </td>*@
+                                <td class="text-left all">
                                     <span>@item["data_from"]</span>
                                 </td>
                                 <td class="text-left">
@@ -44,18 +57,18 @@
                                 <td class="text-left">
                                     <span>@item["get_from_date"]</span>
                                 </td>
-                                <td class="text-left">
-                                    <span>@item["data_to"]</span>
-                                </td>
-                                <td class="text-left">
-                                    <span>@item["acc_link"]</span>
-                                </td>
-                                <td class="text-left">
-                                    <span>@item["user_code"]</span>
-                                </td>
-                                <td class="text-left">
-                                    <span>@item["password"]</span>
-                                </td>
+                                @*<td class="text-left">
+                                        <span>@item["data_to"]</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <span>@item["acc_link"]</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <span>@item["user_code"]</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <span>@item["password"]</span>
+                                    </td>*@
                                 <td class="text-left">
                                     <span>@item["status"]</span>
                                 </td>
@@ -63,9 +76,9 @@
                                     <span>@item["create_date"]</span>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    <a onclick="js_get_detail(@item["id"]);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                     <a onclick="js_get_detail(@item["id"]);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    <a onclick="js_delete_config(@item["id"]);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
                             i++;

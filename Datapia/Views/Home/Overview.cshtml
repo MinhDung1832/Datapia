@@ -34,7 +34,6 @@
                         <label>Trạng thái</label>
                         <select id="status_s" class="form-control select2" data-toggle="select2">
                             <option value="">Chọn trạng thái</option>
-                           
                         </select>
                     </div>
                 </div>
@@ -58,8 +57,8 @@
                     <div>
                         <button class="btn btn-outline-light"><i class="uil-file-question"></i> Hướng dẫn</button>
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="js_clear_form();"><i class="uil-plus"></i> Thêm kết nối</button>
-                        <button class="btn btn-outline-light" onclick="js_clear_form();"><i class="uil-edit-alt"></i> Sửa kết nối</button>
-                        <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-down-arrow"></i> Tải dữ liệu</button>
+                        @*<button class="btn btn-outline-light" onclick="js_clear_form();"><i class="uil-edit-alt"></i> Sửa kết nối</button>*@
+                        @*<button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-down-arrow"></i> Tải dữ liệu</button>*@
                     </div>
                 </div>
             </div>
@@ -85,7 +84,8 @@
                     <span>Để kết nối vui lòng xem <a class="text-danger" href="#">Hướng dẫn</a> và nhập các thông tin dưới đây</span>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-md-6" style="border-right:1px solid #808080">
+                    @*<div class="col-md-6" style="border-right:1px solid #808080">*@
+                    <div class="col-md-12">
                         <div class="row">
                             <h4><strong>Nguồn lấy dữ liệu</strong></h4>
                         </div>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="row mt-2" style="">
                             <div class="col-md-4">
-                                <span style="line-height:40px;"><span class="text-danger">*</span> ID Tài khoản:</span>
+                                <span style="line-height:40px;"><span class="text-danger">*</span>Ad Account ID:</span>
                             </div>
                             <div class="col-md-8">
                                 <input id="acc_id_val" type="text" class="form-control" />
@@ -126,6 +126,14 @@
                         </div>
                         <div class="row mt-2" style="">
                             <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span> App ID:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="app_id" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
                                 <span style="line-height:40px;"><span class="text-danger">*</span> Lấy từ ngày:</span>
                             </div>
                             <div class="col-md-8">
@@ -133,171 +141,172 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <h4><strong>Nguồn lưu dữ liệu</strong></h4>
-                        </div>
-                        <div class="row" style="">
-                            <div class="col-md-4">
-                                <span style="line-height:40px;">Lưu dữ liệu đến:</span>
+                    @*<div class="col-md-6">
+                            <div class="row">
+                                <h4><strong>Nguồn lưu dữ liệu</strong></h4>
                             </div>
-                            <div class="col-md-8">
-                                <select id="data_to" class="form-control select2" data-toggle="select2">
-                                    <option value="">Lưu dữ liệu đến</option>
-                                    <option value="GS">Google sheet</option>
-                                </select>
+                            <div class="row" style="">
+                                <div class="col-md-4">
+                                    <span style="line-height:40px;">Lưu dữ liệu đến:</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <select id="data_to" class="form-control select2" data-toggle="select2">
+                                        <option value="">Lưu dữ liệu đến</option>
+                                        <option value="GS">Google sheet</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-2" style="">
-                            <div class="col-md-4">
-                                <span style="line-height:40px;">Link tài khoản:</span>
+                            <div class="row mt-2" style="">
+                                <div class="col-md-4">
+                                    <span style="line-height:40px;">Link tài khoản:</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <input id="acc_link" type="text" class="form-control" />
+                                </div>
                             </div>
-                            <div class="col-md-8">
-                                <input id="acc_link" type="text" class="form-control" />
+                            <div class="row mt-2" style="">
+                                <div class="col-md-4">
+                                    <span style="line-height:40px;">Tên đăng nhập:</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <input id="user_code" type="text" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-2" style="">
-                            <div class="col-md-4">
-                                <span style="line-height:40px;">Tên đăng nhập:</span>
+                            <div class="row mt-2" style="">
+                                <div class="col-md-4">
+                                    <span style="line-height:40px;">Mật khẩu:</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <input id="password" type="text" class="form-control" />
+                                </div>
                             </div>
-                            <div class="col-md-8">
-                                <input id="user_code" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="row mt-2" style="">
-                            <div class="col-md-4">
-                                <span style="line-height:40px;">Mật khẩu:</span>
-                            </div>
-                            <div class="col-md-8">
-                                <input id="password" type="text" class="form-control" />
-                            </div>
+                        </div>*@
+                </div>
+                @*<div class="row mt-2">
+                        <div class="form-checkbox-danger mb-2">
+                            <input type="checkbox" class="form-check-input" id="stop_using" checked>
+                            <label class="form-check-label" for="stop_using">Ngưng sử dụng</label>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="form-checkbox-danger mb-2">
-                        <input type="checkbox" class="form-check-input" id="stop_using" checked>
-                        <label class="form-check-label" for="stop_using">Ngưng sử dụng</label>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="accordion custom-accordion" id="custom-accordion-one">
-                        <div class="card mb-0">
-                            <div class="card-header" id="headingFour">
-                                <h5 class="m-0">
-                                    <a class="custom-accordion-title d-block"
-                                       data-bs-toggle="collapse" href="#collapseFour"
-                                       aria-expanded="true" aria-controls="collapseFour">
-                                        Chọn dữ liệu cần lấy <i class="mdi mdi-chevron-down accordion-arrow"></i>
-                                    </a>
-                                </h5>
-                            </div>
+                    <div class="row mt-2">
+                        <div class="accordion custom-accordion" id="custom-accordion-one">
+                            <div class="card mb-0">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="m-0">
+                                        <a class="custom-accordion-title d-block"
+                                           data-bs-toggle="collapse" href="#collapseFour"
+                                           aria-expanded="true" aria-controls="collapseFour">
+                                            Chọn dữ liệu cần lấy <i class="mdi mdi-chevron-down accordion-arrow"></i>
+                                        </a>
+                                    </h5>
+                                </div>
 
-                            <div id="collapseFour" class="collapse show"
-                                 aria-labelledby="headingFour"
-                                 data-bs-parent="#custom-accordion-one">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h4><strong>Thông tin chung</strong></h4>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="acc_id" checked>
-                                                    <label class="form-check-label" for="acc_id">ID Tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                <div id="collapseFour" class="collapse show"
+                                     aria-labelledby="headingFour"
+                                     data-bs-parent="#custom-accordion-one">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <h4><strong>Thông tin chung</strong></h4>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="acc_id" checked>
+                                                        <label class="form-check-label" for="acc_id">ID Tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="acc_name" checked>
+                                                        <label class="form-check-label" for="acc_name">Tên tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="camp_id" checked>
+                                                        <label class="form-check-label" for="camp_id">ID chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="camp_name" checked>
+                                                        <label class="form-check-label" for="camp_name">Tên chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="ad_group_id" checked>
+                                                        <label class="form-check-label" for="ad_group_id">ID nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="ad_group_name" checked>
+                                                        <label class="form-check-label" for="ad_group_name">Tên nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="currency_unit" checked>
+                                                        <label class="form-check-label" for="currency_unit">Đơn vị tiền tệ <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="start_date" checked>
+                                                        <label class="form-check-label" for="start_date">Ngày bắt đầu <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="end_date" checked>
+                                                        <label class="form-check-label" for="end_date">Ngày kết thúc  <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="acc_name" checked>
-                                                    <label class="form-check-label" for="acc_name">Tên tài khoản <i class="uil-question-circle text-danger w-100"></i></label>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <h4><strong>Nhân khẩu học</strong></h4>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="camp_id" checked>
-                                                    <label class="form-check-label" for="camp_id">ID chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="year_old" checked>
+                                                        <label class="form-check-label" for="year_old">Tuổi <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="camp_name" checked>
-                                                    <label class="form-check-label" for="camp_name">Tên chiến dịch <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="nation" checked>
+                                                        <label class="form-check-label" for="nation">Quốc gia <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="ad_group_id" checked>
-                                                    <label class="form-check-label" for="ad_group_id">ID nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="region_id" checked>
+                                                        <label class="form-check-label" for="region_id">ID khu vực <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="ad_group_name" checked>
-                                                    <label class="form-check-label" for="ad_group_name">Tên nhóm quảng cáo <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="region_name" checked>
+                                                        <label class="form-check-label" for="region_name">Tên khu vực <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="currency_unit" checked>
-                                                    <label class="form-check-label" for="currency_unit">Đơn vị tiền tệ <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="gender" checked>
+                                                        <label class="form-check-label" for="gender">Giới tính <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="start_date" checked>
-                                                    <label class="form-check-label" for="start_date">Ngày bắt đầu <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-4">
+                                                    <h4><strong>Phân phối quảng cáo</strong></h4>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="end_date" checked>
-                                                    <label class="form-check-label" for="end_date">Ngày kết thúc  <i class="uil-question-circle text-danger w-100"></i></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h4><strong>Nhân khẩu học</strong></h4>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="year_old" checked>
-                                                    <label class="form-check-label" for="year_old">Tuổi <i class="uil-question-circle text-danger w-100"></i></label>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="nation" checked>
-                                                    <label class="form-check-label" for="nation">Quốc gia <i class="uil-question-circle text-danger w-100"></i></label>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="region_id" checked>
-                                                    <label class="form-check-label" for="region_id">ID khu vực <i class="uil-question-circle text-danger w-100"></i></label>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="region_name" checked>
-                                                    <label class="form-check-label" for="region_name">Tên khu vực <i class="uil-question-circle text-danger w-100"></i></label>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="gender" checked>
-                                                    <label class="form-check-label" for="gender">Giới tính <i class="uil-question-circle text-danger w-100"></i></label>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-4">
-                                                <h4><strong>Phân phối quảng cáo</strong></h4>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="form-checkbox-danger mb-2">
-                                                    <input type="checkbox" class="form-check-input" id="performance" checked>
-                                                    <label class="form-check-label" for="performance">Tần suất <i class="uil-question-circle text-danger w-100"></i></label>
+                                                <div class="row mt-2">
+                                                    <div class="form-checkbox-danger mb-2">
+                                                        <input type="checkbox" class="form-check-input" id="performance" checked>
+                                                        <label class="form-check-label" for="performance">Tần suất <i class="uil-question-circle text-danger w-100"></i></label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -305,8 +314,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
@@ -553,27 +561,28 @@
             lst.acc_id_val = $('#acc_id_val').val();
             lst.app_secret = $('#app_secret').val();
             lst.access_token = $('#access_token').val();
+            lst.app_id = $('#app_id').val();
             lst.get_from_date = $('#get_from_date').val();
-            lst.data_to = $('#data_to').val();
-            lst.acc_link = $('#acc_link').val();
-            lst.user_code = $('#user_code').val();
-            lst.password = $('#password').val();
-            lst.stop_using = $('#stop_using').is(":checked");
-            lst.acc_id = $('#acc_id').is(":checked");
-            lst.acc_name = $('#acc_name').is(":checked");
-            lst.camp_id = $('#camp_id').is(":checked");
-            lst.camp_name = $('#camp_name').is(":checked");
-            lst.ad_group_id = $('#ad_group_id').is(":checked");
-            lst.ad_group_name = $('#ad_group_name').is(":checked");
-            lst.currency_unit = $('#currency_unit').is(":checked");
-            lst.start_date = $('#start_date').is(":checked");
-            lst.end_date = $('#end_date').is(":checked");
-            lst.year_old = $('#year_old').is(":checked");
-            lst.nation = $('#nation').is(":checked");
-            lst.region_id = $('#region_id').is(":checked");
-            lst.region_name = $('#region_name').is(":checked");
-            lst.gender = $('#gender').is(":checked");
-            lst.performance = $('#performance').is(":checked");
+            //lst.data_to = $('#data_to').val();
+            //lst.acc_link = $('#acc_link').val();
+            //lst.user_code = $('#user_code').val();
+            //lst.password = $('#password').val();
+            //lst.stop_using = $('#stop_using').is(":checked");
+            //lst.acc_id = $('#acc_id').is(":checked");
+            //lst.acc_name = $('#acc_name').is(":checked");
+            //lst.camp_id = $('#camp_id').is(":checked");
+            //lst.camp_name = $('#camp_name').is(":checked");
+            //lst.ad_group_id = $('#ad_group_id').is(":checked");
+            //lst.ad_group_name = $('#ad_group_name').is(":checked");
+            //lst.currency_unit = $('#currency_unit').is(":checked");
+            //lst.start_date = $('#start_date').is(":checked");
+            //lst.end_date = $('#end_date').is(":checked");
+            //lst.year_old = $('#year_old').is(":checked");
+            //lst.nation = $('#nation').is(":checked");
+            //lst.region_id = $('#region_id').is(":checked");
+            //lst.region_name = $('#region_name').is(":checked");
+            //lst.gender = $('#gender').is(":checked");
+            //lst.performance = $('#performance').is(":checked");
 
             //console.log(lst);
             $.ajax({
@@ -601,6 +610,7 @@
                         $('#id').val(0);
                         $('#add_config').html('Kết nối');
                         $('#staticBackdrop').modal('hide');
+                        js_GetList();
                     }
                     if (data.code == 2) {
                         $.toast({
@@ -651,6 +661,57 @@
                             loaderBg: '#FF0004',
                         });
                         $('#staticBackdrop').modal('show');
+                    }
+
+                },
+                error: function () {
+                }
+
+            });
+        }
+
+        function js_delete_config(id) {
+
+            //console.log(lst);
+            $.ajax({
+                url: '/Home/DeleteConfig',
+                type: 'POST',
+                data: JSON.stringify({ id: id }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        $.toast({
+                            text: "Xóa thông tin kết nối thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        js_GetList()
+                    }
+
+                    if (data.code == 3) {
+                        $.toast({
+                            text: "Xóa thông tin kết nối không thành công, vui lòng thử lại sau!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'danger', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#FF0004',
+                        });
                     }
 
                 },

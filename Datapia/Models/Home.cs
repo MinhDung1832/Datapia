@@ -14,27 +14,28 @@ namespace Datapia.Models
         public string acc_id_val { get; set; }
         public string app_secret { get; set; }
         public string access_token { get; set; }
+        public string app_id { get; set; }
         public DateTime? get_from_date { get; set; }
-        public string data_to { get; set; }
-        public string acc_link { get; set; }
-        public string user_code { get; set; }
-        public string password { get; set; }
-        public bool stop_using { get; set; }
-        public bool acc_id { get; set; }
-        public bool acc_name { get; set; }
-        public bool camp_id { get; set; }
-        public bool camp_name { get; set; }
-        public bool ad_group_id { get; set; }
-        public bool ad_group_name { get; set; }
-        public bool currency_unit { get; set; }
-        public bool start_date { get; set; }
-        public bool end_date { get; set; }
-        public bool year_old { get; set; }
-        public bool nation { get; set; }
-        public bool region_id { get; set; }
-        public bool region_name { get; set; }
-        public bool gender { get; set; }
-        public bool performance { get; set; }
+        //public string data_to { get; set; }
+        //public string acc_link { get; set; }
+        //public string user_code { get; set; }
+        //public string password { get; set; }
+        //public bool stop_using { get; set; }
+        //public bool acc_id { get; set; }
+        //public bool acc_name { get; set; }
+        //public bool camp_id { get; set; }
+        //public bool camp_name { get; set; }
+        //public bool ad_group_id { get; set; }
+        //public bool ad_group_name { get; set; }
+        //public bool currency_unit { get; set; }
+        //public bool start_date { get; set; }
+        //public bool end_date { get; set; }
+        //public bool year_old { get; set; }
+        //public bool nation { get; set; }
+        //public bool region_id { get; set; }
+        //public bool region_name { get; set; }
+        //public bool gender { get; set; }
+        //public bool performance { get; set; }
     }
 
     public class config_detail
