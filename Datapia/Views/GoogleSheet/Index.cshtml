@@ -1,0 +1,516 @@
+﻿@using Datapia.Models;
+@{
+    ViewBag.Title = "Overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+    serializer.MaxJsonLength = Int32.MaxValue;
+}
+<h4 class="mt-2"><strong>Danh sách kết nối</strong></h4>
+
+@*<div class="row mt-2">
+        <div class="col-md-12">
+            <div class="card p-2">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="">
+                            <label>Lấy dữ liệu từ</label>
+                            <select id="data_from_s" class="form-control select2" data-toggle="select2">
+                                <option value="">Chọn nguồn dữ liệu</option>
+                                <option value="FB">Facebook</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="">
+                            <label>ID tài khoản/ App secret</label>
+                            <select id="acc_id_val_s" class="form-control select2" data-toggle="select2">
+                                <option value="">Select</option>
+                                <option value="FB">Facebook</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="">
+                            <label>Trạng thái</label>
+                            <select id="status_s" class="form-control select2" data-toggle="select2">
+                                <option value="">Chọn trạng thái</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div style="display:flex;flex-direction:row-reverse;">
+                        <button class="btn btn-danger" onclick="js_GetList();">Lọc</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card p-2">
+            <div class="row">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                    <span>Bảng dữ liệu</span>
+                    <div>
+                        <button class="btn btn-outline-light"><i class="uil-file-question"></i> Hướng dẫn</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="js_clear_form();"><i class="uil-plus"></i> Thêm kết nối</button>
+                        @*<button class="btn btn-outline-light" onclick="js_clear_form();"><i class="uil-edit-alt"></i> Sửa kết nối</button>*@
+                        @*<button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="uil-down-arrow"></i> Tải dữ liệu</button>*@
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div id="div-content">
+                    @Html.Partial("~/Views/GoogleSheet/Partial/__Index.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Thông tin kết nối</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+                <div class="row">
+                    <span>Để kết nối vui lòng xem <a class="text-danger" href="#">Hướng dẫn</a> và nhập các thông tin dưới đây</span>
+                </div>
+                <div class="row mt-4">
+                    @*<div class="col-md-6" style="border-right:1px solid #808080">*@
+                    <div class="col-md-12">
+                        <div class="row">
+                            <h4><strong>Nguồn lấy dữ liệu</strong></h4>
+                        </div>
+
+                        <div class="row" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span>Link google sheet:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="spreadsheet_id" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;"><span class="text-danger">*</span>File Json:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="data_json" name="file" type="file" />
+                                <p class="mt-2" style="color:red" id="message"></p>
+                                <!-- File Upload -->
+                                <!--<form action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                                      data-upload-preview-template="#uploadPreviewTemplate">
+                                    <div class="fallback">
+                                        <input id="data_json" name="file" type="file" />
+                                    </div>
+
+                                    <div class="dz-message needsclick">
+                                        <i class="h1 text-muted ri-upload-cloud-2-line"></i>
+                                        <h3>Drop files here or click to upload.</h3>
+                                        <span class="text-muted font-13">
+                                            (This is just a demo dropzone. Selected files are
+                                            <strong>not</strong> actually uploaded.)
+                                        </span>
+                                    </div>
+                                </form>-->
+                                <!-- Preview -->
+                                <!--<div class="dropzone-previews mt-3" id="file-previews"></div>-->
+                                <!-- file preview template -->
+                                <!--<div class="d-none" id="uploadPreviewTemplate">
+                                <div class="card mt-1 mb-0 shadow-none border">
+                                    <div class="p-2">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                            </div>
+                                            <div class="col ps-0">
+                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
+                                                <p class="mb-0" data-dz-size></p>
+                                            </div>
+                                            <div class="col-auto">-->
+                                <!-- Button -->
+                                <!--<a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                                        <i class="ri-close-line"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
+                <button id="add_config" type="button" class="btn btn-danger" onclick="js_config();" style="display:block;">Kết nối</button>
+                <button type="button" class="btn btn-danger" onclick="js_config();" style="display:none;">Sửa kết nối</button>
+            </div> <!-- end modal footer -->
+            <input hidden id="id" value="0" />
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
+
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="download" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="download">Tải dữ liệu</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h4><strong>Thời gian truy vấn dữ liệu</strong></h4>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Từ ngày:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h4><strong> &nbsp;</strong></h4>
+                        </div>
+                        <div class="row mt-2" style="">
+                            <div class="col-md-4">
+                                <span style="line-height:40px;">Từ ngày:</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" class="btn btn-danger">Tải dữ liệu</button>
+            </div> <!-- end modal footer -->
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            js_GetList();
+        });
+
+        function js_ReloadTable() {
+            $('#fixed-header-datatable').DataTable({
+                responsive: !0,
+                lengthMenu: [[20, 50, 70, 100, -1], [20, 50, 70, 100, 'll']],
+                "searching": false,
+                fixedHeader: true,
+                fixedHeader: {
+                    headerOffset: 56
+                },
+                columnDefs: [
+                    //{ 'targets': 0, 'orderable': false },
+                ],
+                autoWidth: false,
+                order: [],
+                language: {
+                    "emptyTable": "Không có dữ liệu !",
+                    paginate: {
+                        previous: "<i class='mdi mdi-chevron-left'>",
+                        next: "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                drawCallback: function () {
+                    $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+                }
+            });
+        }
+
+        function js_GetList() {
+            window.scrollTo(0, 0);
+
+            $.ajax({
+                url: '/GoogleSheet/GetListConfig',
+                type: 'POST',
+                data: JSON.stringify({
+
+                }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                    js_Loading(true, 1);
+                },
+                success: function (data) {
+                    $('#div-content').html(data);
+                    js_ReloadTable();
+                    js_Loading(false, 1);
+                },
+                error: function () {
+                    js_Loading(false, 1);
+                }
+            });
+        }
+
+        function js_get_detail(id) {
+            window.scrollTo(0, 0);
+
+            $.ajax({
+                url: '/Home/GetConfigDetail',
+                type: 'POST',
+                data: JSON.stringify({
+                    id: id
+                }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                    //js_Loading(true, 1);
+                },
+                success: function (data) {
+                    if (data != null) {
+                        console.log(data);
+                        $('#id').val(data.id);
+                        $('#data_from').val(data.data_from).trigger('change');
+                        $('#acc_id_val').val(data.acc_id_val);
+                        $('#app_secret').val(data.app_secret);
+                        $('#access_token').val(data.access_token);
+                        $('#get_from_date').val(data.get_from_date);
+                        $('#data_to').val(data.data_to).trigger('change');
+                        $('#acc_link').val(data.acc_link);
+                        $('#user_code').val(data.user_code);
+                        $('#password').val(data.password);
+                        $('#stop_using').prop("checked", data.stop_using);
+                        $('#acc_id').prop("checked", data.acc_id);
+                        $('#acc_name').prop("checked", data.acc_name);
+                        $('#camp_id').prop("checked", data.camp_id);
+                        $('#camp_name').prop("checked", data.camp_name);
+                        $('#ad_group_id').prop("checked", data.ad_group_id);
+                        $('#ad_group_name').prop("checked", data.ad_group_name);
+                        $('#currency_unit').prop("checked", data.currency_unit);
+                        $('#start_date').prop("checked", data.start_date);
+                        $('#end_date').prop("checked", data.end_date);
+                        $('#year_old').prop("checked", data.year_old);
+                        $('#nation').prop("checked", data.nation);
+                        $('#region_id').prop("checked", data.region_id);
+                        $('#region_name').prop("checked", data.region_name);
+                        $('#gender').prop("checked", data.gender);
+                        $('#performance').prop("checked", data.performance);
+
+                        if (data.id > 0) {
+                            $('#add_config').html('Sửa kết nối');
+                        } else {
+                            $('#add_config').html('Kết nối');
+                        }
+
+                        $('#staticBackdrop').modal('show');
+                    }
+
+                    //js_Loading(false, 1);
+                },
+                error: function () {
+                    //js_Loading(false, 1);
+                }
+            });
+        }
+
+        function js_clear_form() {
+            $('#data_from').val('').trigger('change');
+            $('#acc_id_val').val('');
+            $('#app_secret').val('');
+            $('#access_token').val('');
+            $('#get_from_date').val('');
+            $('#data_to').val('').trigger('change');
+            $('#acc_link').val('');
+            $('#user_code').val('');
+            $('#password').val('');
+            $('#stop_using').prop("checked", true);
+            $('#acc_id').prop("checked", true);
+            $('#acc_name').prop("checked", true);
+            $('#camp_id').prop("checked", true);
+            $('#camp_name').prop("checked", true);
+            $('#ad_group_id').prop("checked", true);
+            $('#ad_group_name').prop("checked", true);
+            $('#currency_unit').prop("checked", true);
+            $('#start_date').prop("checked", true);
+            $('#end_date').prop("checked", true);
+            $('#year_old').prop("checked", true);
+            $('#nation').prop("checked", true);
+            $('#region_id').prop("checked", true);
+            $('#region_name').prop("checked", true);
+            $('#gender').prop("checked", true);
+            $('#performance').prop("checked", true);
+        }
+
+        function getGoogleSheetId(url) {
+            const pattern = "/d/";
+            const startIndex = url.indexOf(pattern) + pattern.length;
+            const endIndex = url.indexOf("/edit", startIndex);
+
+            if (startIndex > -1 && endIndex > -1) {
+                return url.substring(startIndex, endIndex);
+            }
+            return null;
+        }
+
+        // Example usage
+        const url = "https://docs.google.com/spreadsheets/d/1MJxBl_GQxzn31DTQuvHtBsUu0X5KweDvrOeWQW9Z7Oo/edit?gid=0#gid=0";
+        const sheetId = getGoogleSheetId(url);
+        console.log("Sheet ID: " + sheetId);
+
+        function js_config() {
+            if ($('#spreadsheet_id').val() == "") {
+                $.toast({
+                    text: "Vui lòng nhập sheet id!", // Text that is to be shown in the toast
+                    heading: 'Thông báo', // Optional heading to be shown on the toast
+                    icon: 'danger', // Type of toast icon
+                    showHideTransition: 'slide', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: '#FF0004',
+                });
+                return;
+            }
+            if ($('#data_json').val() == "") {
+                $.toast({
+                    text: "Vui lòng upload file json!", // Text that is to be shown in the toast
+                    heading: 'Thông báo', // Optional heading to be shown on the toast
+                    icon: 'danger', // Type of toast icon
+                    showHideTransition: 'slide', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: '#FF0004',
+                });
+                return;
+            }
+            var spreadsheet_id = getGoogleSheetId($('#spreadsheet_id').val());
+
+            var formData = new FormData();
+            formData.append("files", $('#data_json').prop('files')[0]);
+            formData.append("spreadsheet_id", spreadsheet_id);
+            $.ajax({
+                url: '/GoogleSheet/InsertConfig',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        $.toast({
+                            text: "Thêm mới thông tin kết nối thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        $('#id').val(0);
+                        $('#add_config').html('Kết nối');
+                        $('#staticBackdrop').modal('hide');
+                        js_GetList();
+                    }
+                    if (data.code == 2) {
+                        $.toast({
+                            text: "Cập nhật thông tin kết nối thành công!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'success', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#2BC700',
+                        });
+                        $('#id').val(0);
+                        $('#add_config').html('Kết nối');
+                        $('#staticBackdrop').modal('hide');
+                    }
+                    if (data.code == 3) {
+                        $.toast({
+                            text: "Thêm mới thông tin kết nối không thành công, vui lòng thử lại sau!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'danger', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#FF0004',
+                        });
+                        $('#staticBackdrop').modal('show');
+                    }
+                    if (data.code == 4) {
+                        $.toast({
+                            text: "Cập nhật thông tin kết nối không thành công, vui lòng thử lại sau!", // Text that is to be shown in the toast
+                            heading: 'Thông báo', // Optional heading to be shown on the toast
+                            icon: 'danger', // Type of toast icon
+                            showHideTransition: 'slide', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'center',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#FF0004',
+                        });
+                        $('#staticBackdrop').modal('show');
+                    }
+
+                },
+                error: function () {
+                }
+
+            });
+        }
+        document.getElementById('data_json').addEventListener('change', function (event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];  // Lấy file được chọn
+
+            const maxSizeMB = 1;  // Giới hạn dung lượng tối đa (MB)
+            const maxSizeBytes = maxSizeMB * 1024 * 1024;  // Chuyển sang byte
+
+            if (file) {
+                const fileName = file.name;
+                const fileSize = file.size;  // Dung lượng tệp (tính bằng byte)
+                const fileExtension = fileName.split('.').pop().toLowerCase();
+
+                if (fileExtension !== 'json') {
+                    document.getElementById('message').textContent = "Vui lòng chọn tệp có định dạng .json.";
+                    fileInput.value = "";  // Xóa nội dung file input
+                } else if (fileSize > maxSizeBytes) {
+                    document.getElementById('message').textContent = "Dung lượng tệp vượt quá giới hạn 2MB.";
+                    fileInput.value = "";  // Xóa nội dung file input
+                } else {
+                    document.getElementById('message').textContent = "Tệp hợp lệ.";
+                }
+            }
+        });
+    </script>
+}

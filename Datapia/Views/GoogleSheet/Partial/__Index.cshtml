@@ -1,0 +1,57 @@
+﻿@using System.Data;
+<div class="table-responsive">
+    <table id="fixed-header-datatable" class="table table-centered w-100 dt-responsive ">
+        <thead class="table-light">
+            <tr>
+                <th>Sheet ID</th>
+                <th>File Json</th>
+                <th>Ngày tạo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    var dt = Model as DataTable;
+                    if (dt.Rows.Count > 0)
+                    {
+                        var i = 0;
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            <tr>
+                                <td class="text-left all">
+                                    <span>@item["spreadsheet_id"]</span>
+                                </td>
+                                <td class="text-left">
+                                    <span>@item["data_json"]</span>
+                                </td>
+                                <td class="text-left">
+                                    <span>@item["create_date"]</span>
+                                </td>
+
+                                <td>
+                                    <a onclick="js_get_detail(@item["id"]);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    <a onclick="js_get_detail(@item["id"]);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                    <a onclick="js_delete_config(@item["id"]);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                }
+            }
+        </tbody>
+        @*<tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>*@
+    </table>
+</div>
