@@ -229,6 +229,8 @@
     <Content Include="assets\images\logo-dark.png" />
     <Content Include="assets\images\logo-sm.png" />
     <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\logo.svg" />
+    <Content Include="assets\images\logosm.svg" />
     <Content Include="assets\images\payments\cod.png" />
     <Content Include="assets\images\payments\discover.png" />
     <Content Include="assets\images\payments\master.png" />
