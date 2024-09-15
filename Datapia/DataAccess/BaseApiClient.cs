@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Text;
 using DataAccess;
 using Datapia.Models;
+using System.Net;
 
 public class BaseApiClient
 {
@@ -547,43 +548,50 @@ public class BaseApiClient
         public Message message { get; set; }
     }
 
-    public static async Task<API_returnAPI_Call<TKey>> CallAsync_FastApi<TKey>(string BaseAddress, string TokenAPI, string Url)
+    public static async Task<API_returnAPI_Call1<TKey>> CallAsync_FastApi<TKey>(string BaseAddress, string TokenAPI, string Url)
     {
-        API_returnAPI_Call<TKey> rt = new API_returnAPI_Call<TKey>();
+        API_returnAPI_Call1<TKey> rt = new API_returnAPI_Call1<TKey>();
         try
         {
-            var client = new HttpClient();
-            //BaseAddress = ConfigurationManager.AppSettings.Get(BaseAddress);
+            using (var client = new HttpClient())
+            {
                 string key = ConfigurationManager.AppSettings.Get(TokenAPI);
-            string url = BaseAddress + Url + "?token=" + key;
-            //if (!String.IsNullOrEmpty(TokenAPI))
-            //{
-            //    string key = ConfigurationManager.AppSettings.Get(TokenAPI);
-            //    client.DefaultRequestHeaders.Add("Authorization", key);
-            //}
-            client.BaseAddress = new Uri(url);
+                string url = BaseAddress + Url;
 
-            HttpResponseMessage response = await client.GetAsync("");
-            string res = await response.Content.ReadAsStringAsync();
-            if ((int)response.StatusCode == 200)
-            {
-                rt.StatusCode = true;
-                //rt.Items = res;
-                var obj = JsonConvert.DeserializeObject<List<TKey>>(res);
-                //var abc =  JObject.Parse(res).ToString();
-                rt.Items = obj;
-            }
-            else
-            {
-                rt.StatusCode = false;
-                rt.Items = null;
+                client.BaseAddress = new Uri(url);
+                if (!string.IsNullOrEmpty(TokenAPI))
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", key);
+                }
+
+                HttpResponseMessage response = await client.GetAsync(""); // Empty path might be intended
+                string res = await response.Content.ReadAsStringAsync();
+
+                // Deserialize into the appropriate object
+                var obj = JsonConvert.DeserializeObject<ResponseModel>(res);
+
+                if (response.StatusCode == HttpStatusCode.OK && obj != null && obj.Status == 200)
+                {
+                    rt.StatusCode = true;
+
+                    // Here, obj is of type ReturnFastApi, so you can set rt.Items accordingly.
+                    // For example, casting obj.Message.SpreadsheetId to TKey if it fits your model:
+                    rt.Items = (TKey)(object)obj;
+                }
+                else
+                {
+                    rt.StatusCode = false;
+                    rt.Items = default(TKey);  // Set default value for TKey
+                }
             }
         }
         catch (Exception ex)
         {
             rt.StatusCode = false;
-            rt.Items = null;
+            rt.Items = default(TKey);  // Handle the exception by returning default TKey
+            rt.Message = ex.Message;  // Include exception message in the return object for debugging
         }
+
         return rt;
     }
 }

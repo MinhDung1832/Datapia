@@ -76,5 +76,18 @@ namespace Datapia.Controllers
             Common.SaveSession("GoogleSheet", "Index");
             return RedirectToAction("Login", "Account");
         }
+
+        public async Task<ActionResult> Export_sheet(int id)
+        {
+            if (Session["usercode"] != null && Session["usercode"].ToString().Length > 0)
+            {
+                var query = await BaseApiClient.CallAsync_FastApi<ResponseModel>("http://127.0.0.1:8001", "TokenAPI", "/google_sheet?id=" + id);
+
+                return Json(query);
+            }
+            Common.SaveSession("Home", "Overview");
+            return RedirectToAction("Login", "Account");
+            //return View();
+        }
     }
 }
