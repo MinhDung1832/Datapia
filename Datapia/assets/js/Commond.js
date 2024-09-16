@@ -7,14 +7,12 @@
             return "";
         }
     } catch (e) {
-
     }
 }
 
 $('.tabnavbar').click(function () {
     js_ReloadTable_Load();
 });
-
 
 // Fix lỗi khi bấm vào menu .fixed-navbar , tạo thêm sự kiện khi bấm vào .fixed-navbar  thì nó gọi đến js này
 function js_ReloadTable_Load() {
@@ -121,9 +119,7 @@ function Check_messe() {
             return false;
         }
     }
-
 }
-
 
 function Check_messe2() {
     var buttons = document.getElementsByClassName('notnull');
@@ -185,26 +181,17 @@ function isValidPhoneNumber(phoneNumber) {
 function js_Loading(isLoading, loadingType, closeEffect) {
     switch (loadingType) {
         case 0:
-            $('.loading-0').remove();
+            $('.loading-page').remove();
             if (isLoading) $('BODY').append('<div class="loading-0"></div>');
             break;
         case 1:
             if (isLoading) {
-                $('.loading-1-wrapper').remove();
-                $('BODY').removeClass('loaded-1');
                 $('BODY').append(
-                    '<div class="loading-1-wrapper">' +
-                    '<div class="loading-1"></div>' +
-                    '<div class="loading-1-section section-left"></div>' +
-                    '<div class="loading-1-section section-right"></div>' +
+                    '<div class="loading-page">' +
+                    '<div class="loader"></div>' +
                     '</div>');
             } else {
-                if (closeEffect) {
-                    $('BODY').addClass('loaded-1');
-                    setTimeout(function () { $('.loading-1-wrapper').remove(); }, 500);
-                } else {
-                    $('.loading-1-wrapper').remove();
-                }
+                $('.loading-page').remove();
             }
             break;
         case 2:
