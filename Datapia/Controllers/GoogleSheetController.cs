@@ -85,7 +85,7 @@ namespace Datapia.Controllers
 
                 return Json(query);
             }
-            Common.SaveSession("Home", "Overview");
+            Common.SaveSession("GoogleSheet", "Index");
             return RedirectToAction("Login", "Account");
             //return View();
         }

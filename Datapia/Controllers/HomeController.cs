@@ -119,6 +119,19 @@ namespace Datapia.Controllers
             }
         }
 
+        public async Task<ActionResult> ImportData(int id)
+        {
+            if (Session["usercode"] != null && Session["usercode"].ToString().Length > 0)
+            {
+                var query = await BaseApiClient.CallAsync_FastApi<ResponseModel>("http://127.0.0.1:8001", "TokenAPI", "/import_data?id=" + id);
+
+                return Json(query);
+            }
+            Common.SaveSession("Home", "Overview");
+            return RedirectToAction("Login", "Account");
+            //return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -721,6 +721,61 @@
             });
         }
 
+        function js_import_data(id) {
+            window.scrollTo(0, 0);
+
+            $.ajax({
+                url: '/GoogleSheet/Export_sheet',
+                type: 'POST',
+                data: JSON.stringify({
+                    id: id
+                }),
+                contentType: 'application/json, charset=utf-8',
+                beforeSend: function () {
+                    js_Loading(true, 1);
+                },
+                success: function (data) {
+                    if (data != null) {
+                        if (data.Items.Status == 200) {
+                            $.toast({
+                                text: "Nhập dữ liệu thành công!", // Text that is to be shown in the toast
+                                heading: 'Thông báo', // Optional heading to be shown on the toast
+                                icon: 'success', // Type of toast icon
+                                showHideTransition: 'slide', // fade, slide or plain
+                                allowToastClose: true, // Boolean value true or false
+                                hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                                stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                                textAlign: 'center',  // Text alignment i.e. left, right or center
+                                loader: true,  // Whether to show loader or not. True by default
+                                loaderBg: '#2BC700',
+                            });
+                        }
+                        else {
+                            $.toast({
+                                text: "Nhập dữ liệu không thành công!", // Text that is to be shown in the toast
+                                heading: 'Thông báo', // Optional heading to be shown on the toast
+                                icon: 'danger', // Type of toast icon
+                                showHideTransition: 'slide', // fade, slide or plain
+                                allowToastClose: true, // Boolean value true or false
+                                hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                                stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                                textAlign: 'center',  // Text alignment i.e. left, right or center
+                                loader: true,  // Whether to show loader or not. True by default
+                                loaderBg: '#FF0004',
+                            });
+                        }
+                    }
+
+                    js_Loading(false, 1);
+                },
+                error: function () {
+                    js_Loading(false, 1);
+                }
+            });
+        }
+
         //function toggleCheckbox(id) {
         //    var check = $('#' + id).is(":checked");
         //    if (check == false) {
