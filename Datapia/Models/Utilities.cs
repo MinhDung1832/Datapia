@@ -46,6 +46,7 @@ namespace Datapia.Models
         public string Message { set; get; }
         public List<T> Items { set; get; }
     }
+
     public class API_returnAPI_Call1<T>
     {
         public bool StatusCode { set; get; }
@@ -68,7 +69,7 @@ namespace Datapia.Models
     public class ResponseModel
     {
         public int Status { get; set; }
-        public Message_api Message { get; set; }
+        public string Message { get; set; }
     }
 
     public class Message_api

@@ -89,5 +89,28 @@ namespace Datapia.Controllers
             return RedirectToAction("Login", "Account");
             //return View();
         }
+        public ActionResult DeleteConfig(int id)
+        {
+            try
+            {
+                if (Session["usercode"] != null && Session["usercode"].ToString().Length > 0)
+                {
+                    var userid = Session["usercode"].ToString();
+                    var query_insert = BaseConnectionSql.Execute_Update_Insert_V1("strConn", "sp_googlesheet_delete", userid, id);
+                    if (query_insert)
+                    {
+                        return Json(new { code = 1 });
+                    }
+                    return Json(new { code = 3 });
+                }
+                Common.SaveSession("GoogleSheet", "Index");
+                return RedirectToAction("Login", "Account");
+            }
+            catch (Exception ex)
+            {
+                LogBuild.CreateLogger(JsonConvert.SerializeObject(ex), "DeleteConfig");
+                return Json(null);
+            }
+        }
     }
 }

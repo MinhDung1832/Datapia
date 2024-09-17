@@ -573,15 +573,12 @@ public class BaseApiClient
                 if (response.StatusCode == HttpStatusCode.OK && obj != null && obj.Status == 200)
                 {
                     rt.StatusCode = true;
-
-                    // Here, obj is of type ReturnFastApi, so you can set rt.Items accordingly.
-                    // For example, casting obj.Message.SpreadsheetId to TKey if it fits your model:
                     rt.Items = (TKey)(object)obj;
                 }
                 else
                 {
                     rt.StatusCode = false;
-                    rt.Items = default(TKey);  // Set default value for TKey
+                    rt.Items = (TKey)(object)obj;
                 }
             }
         }
