@@ -179,6 +179,7 @@ function isValidPhoneNumber(phoneNumber) {
 }
 
 function js_Loading(isLoading, loadingType, closeEffect) {
+    debugger;
     switch (loadingType) {
         case 0:
             $('.loading-page').remove();
@@ -186,9 +187,10 @@ function js_Loading(isLoading, loadingType, closeEffect) {
             break;
         case 1:
             if (isLoading) {
+                $('.loading-page').remove();
                 $('BODY').append(
                     '<div class="loading-page">' +
-                    '<div class="loader"></div>' +
+                    '<div class="loader_0"></div>' +
                     '</div>');
             } else {
                 $('.loading-page').remove();
